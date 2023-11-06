@@ -5,7 +5,13 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-import { Beranda, ProgramDonasi, TentangKami, Login } from "./pages";
+import {
+  Beranda,
+  ProgramDonasi,
+  TentangKami,
+  Login,
+  KabarPanti,
+} from "./pages";
 import { RootLayout } from "./routes";
 
 const router = createBrowserRouter(
@@ -15,6 +21,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Beranda />} index />
         <Route path="program-donasi" element={<ProgramDonasi />} />
         <Route path="tentang-kami" element={<TentangKami />} />
+        <Route path="kabar-panti" element={<KabarPanti />} />
       </Route>
       <Route path="login" element={<Login />} />
     </Route>
