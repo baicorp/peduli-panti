@@ -13,6 +13,13 @@ import jumlahAnak from "./assets/Icons/logo-jumlah-anak.svg";
 import jumlahDonatur from "./assets/Icons/logo-jumlah-donatur.svg";
 import jumlahUang from "./assets/Icons/logo-jumlah-uang.svg";
 
+import dataValid from "./assets/Icons/data-valid.svg";
+import tepatSasaran from "./assets/Icons/tepat-sasaran.svg";
+import mudahBerdonasi from "./assets/Icons/mudah-berdonasi.svg";
+
+import donaturPerempuan from "./assets/Icons/woman-donatur.svg";
+import donaturLaki from "./assets/Icons/man-donatur.svg";
+
 export const footerData = [
   {
     title: "Program",
@@ -85,4 +92,43 @@ export const faqStatData = [
   },
   { img: jumlahDonatur, title: `Jumlah Donatur`, count: `70 Orang` },
   { img: jumlahAnak, title: `Jumlah Anak yang Terbantu`, count: `5,740 Anak` },
+];
+
+export const alasanDonasiData = [
+  {
+    img: dataValid,
+    title: "Data Valid",
+    desc: "Panti peduli memastikan keakuratan data yang tercatat dalam sistem demi memenuhi kebutuhan masyarakat yang memerlukan bantuan.",
+  },
+  {
+    img: tepatSasaran,
+    title: "Tepat Sasaran",
+    desc: "Panti peduli memastikan tepat sasaran dalam memberikan bantuan yang efektif kepada yang membutuhkan.",
+  },
+  {
+    img: mudahBerdonasi,
+    title: "Mudah Berdonasi",
+    desc: "Panti peduli memastikan bahwa proses berdonasi menjadi lebih mudah dan dapat diikuti oleh siapa saja yang ingin memberikan bantuannya.",
+  },
+];
+
+export const doaDonaturData = [
+  {
+    avatar: donaturPerempuan,
+    nama: "Lina Marinda",
+    profesi: "Karyawan",
+    doa: "Layanannya sangat baik. Semoga aplikasi ini dapat menjadi sarana yang bermanfaat bagi mereka yang ingin memberikan kasih sayang dan dukungan kepada panti asuhan, serta mempermudah pencarian panti asuhan yang membutuhkan bantuan.",
+  },
+  {
+    avatar: donaturLaki,
+    nama: "Joko Wira",
+    profesi: "Mahasiswa",
+    doa: "Tetaplah berkembang dan memberikan manfaat, aplikasi yang luar biasa ini. Semoga semakin banyak orang dapat terinspirasi untuk membantu panti asuhan melalui pencarian yang lebih mudah dan menyediakan dukungan yang mereka butuhkan.",
+  },
+  {
+    avatar: donaturLaki,
+    nama: "Surya Januar",
+    profesi: "mahasiswa",
+    doa: "Semoga terus memberikan pelayanan yang luar biasa dalam membantu orang-orang menemukan panti asuhan yang membutuhkan, sehingga kasih sayang dan dukungan dapat tersalurkan dengan lebih efisien dan berdampak positif.",
+  },
 ];
