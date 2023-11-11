@@ -11,7 +11,9 @@ import {
   TentangKami,
   Login,
   KabarPanti,
+  DetailPanti,
 } from "./pages";
+
 import { RootLayout } from "./routes";
 
 const router = createBrowserRouter(
@@ -20,6 +22,7 @@ const router = createBrowserRouter(
       <Route element={<RootLayout />}>
         <Route path="/" element={<Beranda />} index />
         <Route path="program-donasi" element={<ProgramDonasi />} />
+        <Route path="program-donasi/:idPanti" element={<DetailPanti />} />
         <Route path="tentang-kami" element={<TentangKami />} />
         <Route path="kabar-panti" element={<KabarPanti />} />
       </Route>
