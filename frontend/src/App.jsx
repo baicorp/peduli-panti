@@ -16,7 +16,9 @@ import {
   KonfirmasiBarang,
 } from "./pages";
 
+
 import { RootLayout } from "./routes";
+import RootLayoutLogin from "./routes/RootLayoutLogin";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,7 +32,9 @@ const router = createBrowserRouter(
         <Route path="konfirmasi-uang" element={<KonfirmasiUang />} />
         <Route path="konfirmasi-barang" element={<KonfirmasiBarang />} />
       </Route>
-      <Route path="login" element={<Login />} />
+      <Route element={<RootLayoutLogin />}>
+        <Route path="login" element={<Login />} />
+      </Route>
     </Route>
   )
 );
