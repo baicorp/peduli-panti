@@ -4,5 +4,7 @@ import TentangKami from "./Tentang Kami/TentangKami";
 import KabarPanti from "./Kabar Panti/KabarPanti";
 import Login from "./Login/Login";
 import DetailPanti from "./Detail Panti/DetailPanti";
+import KonfirmasiUang from "./Konfirmasi/KonfirmasiUang";
+import KonfirmasiBarang from "./Konfirmasi/KonfirmasiBarang";
 
-export { Beranda, ProgramDonasi, TentangKami, KabarPanti, Login, DetailPanti };
+export { Beranda, ProgramDonasi, TentangKami, KabarPanti, Login, DetailPanti, KonfirmasiUang, KonfirmasiBarang };
