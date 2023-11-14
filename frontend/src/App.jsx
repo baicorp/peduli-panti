@@ -14,6 +14,7 @@ import {
   DetailPanti,
   KonfirmasiUang,
   KonfirmasiBarang,
+  Daftar,
 } from "./pages";
 
 
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
       </Route>
       <Route element={<RootLayoutLogin />}>
         <Route path="login" element={<Login />} />
+        <Route path="Daftar" element={<Daftar />} />
       </Route>
     </Route>
   )
