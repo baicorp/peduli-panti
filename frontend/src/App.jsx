@@ -5,6 +5,8 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
+import { RootLayout, RootLayoutAdmin, RootLayoutLogin } from "./routes";
+
 import {
   Beranda,
   ProgramDonasi,
@@ -17,9 +19,13 @@ import {
   Daftar,
 } from "./pages";
 
-
-import { RootLayout } from "./routes";
-import RootLayoutLogin from "./routes/RootLayoutLogin";
+import {
+  Dashboard,
+  DonasiMasuk,
+  Notifikasi,
+  StatusPanti,
+  KabarPantiAdmin,
+} from "./pages/Admin";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,6 +42,13 @@ const router = createBrowserRouter(
       <Route element={<RootLayoutLogin />}>
         <Route path="login" element={<Login />} />
         <Route path="Daftar" element={<Daftar />} />
+      </Route>
+      <Route element={<RootLayoutAdmin />}>
+        <Route path="profile" element={<Dashboard />} />
+        <Route path="status-panti" element={<StatusPanti />} />
+        <Route path="donasi-masuk" element={<DonasiMasuk />} />
+        <Route path="kabar-panti-admin" element={<KabarPantiAdmin />} />
+        <Route path="notifikasi" element={<Notifikasi />} />
       </Route>
     </Route>
   )

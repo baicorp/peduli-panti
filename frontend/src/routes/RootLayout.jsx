@@ -14,16 +14,36 @@ export default function RootLayout() {
           <img src={logoPanti} alt="Logo website panti" />
           <ul className="flex justify-between gap-14 font-semibold text-xl text-[#767272]">
             <li>
-              <NavLink to={"/"}>Beranda</NavLink>
+              <NavLink
+                className={({ isActive }) => isActive && "text-pink"}
+                to={"/"}
+              >
+                Beranda
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"program-donasi"}>Program Donasi</NavLink>
+              <NavLink
+                className={({ isActive }) => isActive && "text-pink"}
+                to={"program-donasi"}
+              >
+                Program Donasi
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"tentang-kami"}>Tentang Kami</NavLink>
+              <NavLink
+                className={({ isActive }) => isActive && "text-pink"}
+                to={"tentang-kami"}
+              >
+                Tentang Kami
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"login"}>Login</NavLink>
+              <NavLink
+                className={({ isActive }) => isActive && "text-pink"}
+                to={"login"}
+              >
+                Login
+              </NavLink>
             </li>
           </ul>
         </nav>

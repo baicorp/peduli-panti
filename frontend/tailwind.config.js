@@ -10,6 +10,7 @@ export default {
         "medium-pink": "#E8CCE0",
         purple: "#5A0845",
         gray: "#5A5757",
+        "border-color": "#E5DCDC",
       },
     },
   },

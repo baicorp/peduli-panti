@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import 'tailwindcss/tailwind.css';
+import React, { useState } from "react";
+import "tailwindcss/tailwind.css";
 import logoGooglePlay from "../../assets/Icons/logo-google-play.png";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => {
@@ -15,14 +15,16 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className='text-xl font-bold text-gray-900'>Ayo Bergabung Dengan Komunitas Kami!</h2>
+          <h2 className="text-xl font-bold text-gray-900">
+            Ayo Bergabung Dengan Komunitas Kami!
+          </h2>
         </div>
-        <div className='flex align-middle'>
-          <div className='bg-slate-400 h-px w-24 mt-2 me-3'></div>
+        <div className="flex align-middle">
+          <div className="bg-slate-400 h-px w-24 mt-2 me-3"></div>
           <p className=" text-center text-sm leading-none font-normal text-slate-400">
             Masuk menggunakan Akun
           </p>
-          <div className='bg-slate-400 h-px w-24 mt-2 ms-3'></div>
+          <div className="bg-slate-400 h-px w-24 mt-2 ms-3"></div>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <input type="hidden" name="remember" value={rememberMe} />
@@ -71,13 +73,19 @@ const LoginPage = () => {
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
               />
-              <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
+              <label
+                htmlFor="remember_me"
+                className="ml-2 block text-sm text-gray-900"
+              >
                 Ingat Saya
               </label>
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+              <a
+                href="#"
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
                 Lupa Kata Sandi
               </a>
             </div>
@@ -91,14 +99,14 @@ const LoginPage = () => {
               Masuk
             </button>
           </div>
-          <div className='flex align-middle'>
-            <div className='bg-slate-400 h-px w-24 mt-2 me-3'></div>
+          <div className="flex align-middle">
+            <div className="bg-slate-400 h-px w-24 mt-2 me-3"></div>
             <p className=" text-center text-sm leading-none font-normal text-slate-400">
               Masuk menggunakan google
             </p>
-            <div className='bg-slate-400 h-px w-24 mt-2 ms-3'></div>
+            <div className="bg-slate-400 h-px w-24 mt-2 ms-3"></div>
           </div>
-          <div className='flex justify-center'>
+          <div className="flex justify-center">
             <button
               type="submit"
               className="group relative w-24 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -108,17 +116,17 @@ const LoginPage = () => {
           </div>
           <div>
             <p className=" text-center text-sm leading-none font-normal text-slate-400">
-              Belum memiliki akun? yuk daftar <span className='text-indigo-600 font-bold'>Disini</span>
+              Belum memiliki akun? yuk daftar{" "}
+              <span className="text-indigo-600 font-bold">Disini</span>
             </p>
-            <div className='bg-slate-400 h-px w-full mt-3'></div>
+            <div className="bg-slate-400 h-px w-full mt-3"></div>
             <p className=" text-center text-sm leading-none font-normal text-slate-400 mt-3">
               Download Aplikasi
             </p>
-            <div className='flex justify-center mt-3'>
+            <div className="flex justify-center mt-3">
               <img src={logoGooglePlay} alt="logo-google-play" />
             </div>
           </div>
-
         </form>
       </div>
     </div>
