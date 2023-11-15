@@ -108,7 +108,7 @@ const DaftarPage = () => {
             <p className="ml-[37px] text-center text-sm leading-none font-normal text-slate-400 mt-3">
               Download Aplikasi
             </p>
-            <div className='flex justify-center mt-3 mb-[30px]'>
+            <div className='ml-[190px] mt-3 w-[120px] h-[79px]'>
               <img src={logoGooglePlay} alt="logo-google-play" />
             </div>
           </div>
