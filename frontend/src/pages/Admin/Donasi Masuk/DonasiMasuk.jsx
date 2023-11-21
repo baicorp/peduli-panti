@@ -22,6 +22,8 @@ export default function KabarPantiAdmin() {
             <td className="px-4 py-2 text-center">Sakinah Lestari</td>
             <td className="px-4 py-2 text-center">081268005069</td>
             <td className="px-4 py-2 text-center">Rp. 700.000,00</td>
+            <td className="  text-center w-[10px] bg-green-500 rounded-[8px] text-white">Diterima</td>
+
           </tr>
         </tbody>
       </table>
