@@ -13,6 +13,7 @@ import {
   TentangKami,
   Login,
   KabarPanti,
+  KabarPanti2,
   DetailPanti,
   KonfirmasiUang,
   KonfirmasiBarang,
@@ -37,13 +38,14 @@ const router = createBrowserRouter(
         <Route path="program-donasi/:idPanti" element={<DetailPanti />} />
         <Route path="tentang-kami" element={<TentangKami />} />
         <Route path="kabar-panti" element={<KabarPanti />} />
+        <Route path="kabar-panti2" element={<KabarPanti2 />} />
         <Route path="konfirmasi-uang" element={<KonfirmasiUang />} />
         <Route path="konfirmasi-barang" element={<KonfirmasiBarang />} />
-        <Route path="kirim-doa" element={<KirimDoa />} />
       </Route>
       <Route element={<RootLayoutLogin />}>
         <Route path="login" element={<Login />} />
         <Route path="Daftar" element={<Daftar />} />
+        <Route path="kirim-doa" element={<KirimDoa />} />
       </Route>
       <Route element={<RootLayoutAdmin />}>
         <Route path="profile" element={<Dashboard />} />
