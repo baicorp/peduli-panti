@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import programDonasi from "../../assets/Images/program-donasi.jpg";
+import programDonasi from "../assets/Images/program-donasi.jpg";
 
 export default function CardPanti({
   title,
@@ -12,49 +14,28 @@ export default function CardPanti({
   link,
 }) {
   return (
-    <div
+    <Link
       key={crypto.randomUUID()}
+      to={"123"}
       className="bg-light-pink rounded-xl overflow-hidden max-w-[390px]"
     >
       <img src={programDonasi} alt="" />
       <div className="px-8 py-5">
-        <p className="text-2xl text-pink font-bold mb-7">{title}</p>
-        <p className="text-base">Penerima : {penerima}</p>
-        <div className="text-sm mt-2">
-          <div className="flex justify-between">
-            <p>Progres Realisasi Donasi</p>
-            <p>{progres}</p>
-          </div>
-          <div className="rounded-full h-[10px] bg-light-pink border mb-2 overflow-hidden">
-            <div className="w-3/4 h-full bg-medium-pink"></div>
-          </div>
-        </div>
-        <p className="mb-1">
-          Donasi Terkumpul :{" "}
-          <span className="text-pink">Rp.{donasiTerkumpul}</span>
+        <p className="text-xl text-pink font-semibold mb-7">
+          Yayasan Putra Nusa
         </p>
-        <p className="mb-4">
-          Target : <span className="text-pink">Rp.{target}</span>
+        <p>
+          Jl. Dukuh Pinggir IV, Kb. Melati, Tanah Abang, Kota Jakarta Pusat
+          Tanahabang, Daerah Khusus IbuKota Jakarta, Indonesia
         </p>
-        {tagList.map((data) => {
-          return (
-            <button
-              key={crypto.randomUUID()}
-              className="font-semibold text-xs text-white bg-purple p-[6px] rounded-full mb-4"
-            >
-              {data}
-            </button>
-          );
-        })}
-
         <p className="text-14">{desc}</p>
       </div>
-      <Link
+      {/* <Link
         to={link}
         className="text-white block text-lg bg-purple w-full py-2 font-bold text-center"
       >
         Donasi Sekarang
-      </Link>
-    </div>
+      </Link> */}
+    </Link>
   );
 }

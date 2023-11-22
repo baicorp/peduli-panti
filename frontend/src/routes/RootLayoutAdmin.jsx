@@ -13,11 +13,13 @@ export default function RootLayoutAdmin() {
         <nav
           className={`${baseStyle} flex justify-between items-center w-full h-[75px]`}
         >
-          <img src={logoPanti} alt="Logo website panti" />
+          <img src={logoPanti} alt="Logo website panti" className="w-[200px]" />
           <ul className="flex justify-between gap-14 font-semibold text-xl text-[#767272]">
             <li className="flex gap-1 items-center">
-              <img src={logout} className="w-6 h-6" alt="" />
-              <NavLink to={"logout"}>Keluar Akun</NavLink>
+              <img src={logout} className="w-[22px] h-[22px]" alt="" />
+              <NavLink to={"logout"} className="text-lg">
+                Keluar Akun
+              </NavLink>
             </li>
           </ul>
         </nav>
@@ -90,7 +92,7 @@ export default function RootLayoutAdmin() {
                   </div>
                 </NavLink>
               </div>
-              <div>
+              {/* <div>
                 <NavLink
                   to="donasi-masuk"
                   className={({ isActive }) => isActive && "text-pink"}
@@ -110,7 +112,7 @@ export default function RootLayoutAdmin() {
                     <p>Donasi Masuk</p>
                   </div>
                 </NavLink>
-              </div>
+              </div> */}
               <div>
                 <NavLink
                   to="kabar-panti-admin"

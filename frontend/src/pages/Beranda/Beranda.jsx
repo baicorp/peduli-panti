@@ -10,6 +10,7 @@ import calendar from "../../assets/Icons/calendar.svg";
 import { Link } from "react-router-dom";
 
 import { alasanDonasiData, doaDonaturData } from "../../constant";
+import CardKabarPanti from "../../components/CardKabarPanti";
 
 export default function Beranda() {
   const settings = {
@@ -44,67 +45,52 @@ export default function Beranda() {
         </div>
       </section>
       <section className={baseStyle}>
-        <h1 className="text-[45px] mb-12 text-center">
+        <h1 className="text-4xl mb-12 text-center">
           Kabar{" "}
           <span className="underline font-bold text-pink">Panti Peduli</span>
         </h1>
         <div className="grid grid-cols-3 gap-4">
           {[1, 2, 3].map(() => {
             return (
-              <div
+              <CardKabarPanti
                 key={crypto.randomUUID()}
-                className="max-w-[390px] drop-shadow-xl rounded-xl overflow-hidden bg-gradient-to-b from-gradient-pink to-white"
-              >
-                <img src={bantuan} alt="" />
-                <div className=" space-y-3 p-4">
-                  <div className="flex items-center gap-2">
-                    <img src={calendar} alt="" />
-                    <p className="font-semibold">
-                      Penyaluran Alat sekolah kepada 89 anak panti
-                    </p>
-                  </div>
-                  <p>
-                    Bandung - Sabtu 2 Oktober 2023, melakukan “kolaborasi
-                    kebaikan” bersama sahabat yatim indonesia dalam rangka
-                    menyalurkan program Yatim berprestasi.
-                  </p>
-                  <button className="font-semibold text-xs text-white bg-pink p-[6px] rounded-full">
-                    CSR
-                  </button>
-                  <button className="block shadow-lg text-xs p-2 rounded-md border-[1.5px] border-black">
-                    selengkapnya
-                  </button>
-                </div>
-              </div>
+                img={bantuan}
+                judul="Penyaluran Alat sekolah kepada 89 anak panti"
+                deskripsi="Bandung - Sabtu 2 Oktober 2023, melakukan “kolaborasi kebaikan” bersama sahabat yatim indonesia dalam rangka menyalurkan program Yatim berprestasi."
+                link="/kabar-panti2"
+              />
             );
           })}
         </div>
         <div className="flex justify-center">
           <Link
             to="kabar-panti"
-            className="text-lg font-semibold w-[207px] mt-8 text-pink p-2 rounded-md shadow drop-shadow-lg"
+            className="text-lg font-semibold w-[207px] mt-8 text-pink text-center p-2 rounded-md shadow drop-shadow-lg"
           >
             Liaht Selengkapnya
           </Link>
         </div>
       </section>
       <section className={baseStyle}>
-        <h1 className="text-[45px] mt-12 mb-10 text-center">
+        <h1 className="text-4xl mt-12 mb-10 text-center">
           Kenapa kamu harus berdonasi di{" "}
           <span className="underline font-bold text-pink">Panti Peduli</span> ?
         </h1>
         <div className="flex justify-between">
           {alasanDonasiData.map((data) => {
             return (
-              <div key={crypto.randomUUID()} className="flex gap-4">
+              <div
+                key={crypto.randomUUID()}
+                className="flex items-center gap-4 max-w-[453px] w-full shadow-2xl rounded-lg px-5 py-4"
+              >
                 <img
                   src={data.img}
                   alt=""
-                  className="w-[75px] h-[75px] object-contain"
+                  className="w-[112px] h-[112px] object-contain"
                 />
                 <div className="flex flex-col gap-4">
-                  <p className="text-xl">{data.title}</p>
-                  <p className="max-w-[233px] text-sm">{data.desc}</p>
+                  <p className="text-xl font-medium">{data.title}</p>
+                  <p className="">{data.desc}</p>
                 </div>
               </div>
             );
@@ -117,7 +103,7 @@ export default function Beranda() {
           <div
             className={`${baseStyle} absolute top-[77px] right-1/2 translate-x-1/2`}
           >
-            <h2 className="text-white mb-14 text-5xl font-bold text-center">
+            <h2 className="text-white mb-14 text-4xl font-bold text-center">
               Pesan dan Doa Donatur
             </h2>
             <div className="flex justify-between gap-4">

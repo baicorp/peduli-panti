@@ -101,11 +101,6 @@ export const alasanDonasiData = [
     desc: "Panti peduli memastikan keakuratan data yang tercatat dalam sistem demi memenuhi kebutuhan masyarakat yang memerlukan bantuan.",
   },
   {
-    img: tepatSasaran,
-    title: "Tepat Sasaran",
-    desc: "Panti peduli memastikan tepat sasaran dalam memberikan bantuan yang efektif kepada yang membutuhkan.",
-  },
-  {
     img: mudahBerdonasi,
     title: "Mudah Berdonasi",
     desc: "Panti peduli memastikan bahwa proses berdonasi menjadi lebih mudah dan dapat diikuti oleh siapa saja yang ingin memberikan bantuannya.",

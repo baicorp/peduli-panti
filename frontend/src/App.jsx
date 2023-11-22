@@ -9,7 +9,7 @@ import { RootLayout, RootLayoutAdmin, RootLayoutLogin } from "./routes";
 
 import {
   Beranda,
-  ProgramDonasi,
+  CariPanti,
   TentangKami,
   Login,
   KabarPanti,
@@ -34,19 +34,18 @@ const router = createBrowserRouter(
     <Route>
       <Route element={<RootLayout />}>
         <Route path="/" element={<Beranda />} index />
-        <Route path="program-donasi" element={<ProgramDonasi />} />
-        <Route path="program-donasi/:idPanti" element={<DetailPanti />} />
+        <Route path="cari-panti" element={<CariPanti />} />
+        <Route path="cari-panti/:idPanti" element={<DetailPanti />} />
         <Route path="tentang-kami" element={<TentangKami />} />
         <Route path="kabar-panti" element={<KabarPanti />} />
         <Route path="kabar-panti2" element={<KabarPanti2 />} />
         <Route path="konfirmasi-uang" element={<KonfirmasiUang />} />
         <Route path="konfirmasi-barang" element={<KonfirmasiBarang />} />
-      </Route>
-      <Route element={<RootLayoutLogin />}>
         <Route path="login" element={<Login />} />
-        <Route path="Daftar" element={<Daftar />} />
+        <Route path="daftar" element={<Daftar />} />
         <Route path="kirim-doa" element={<KirimDoa />} />
       </Route>
+      <Route element={<RootLayoutLogin />}></Route>
       <Route element={<RootLayoutAdmin />}>
         <Route path="profile" element={<Dashboard />} />
         <Route path="status-panti" element={<StatusPanti />} />

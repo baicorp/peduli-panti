@@ -9,8 +9,8 @@ export default function TentangKami() {
       <section className="bg-gradient-to-t from-gradient-pink to-white py-[85px]">
         <div className={`${baseStyle} flex justify-between w-full`}>
           <div className="max-w-[650px] text-justify">
-            <h1 className="text-4xl mb-4 font-semibold">Tentang Kami</h1>
-            <p className="mb-3">
+            <h1 className="text-[28px] mb-4 font-semibold">Tentang Kami</h1>
+            <p className="mb-3 font-medium max-w-[500px]">
               Panti Peduli adalah platform yang bertujuan sebagai sarana
               berdonasi dengan mudah untuk membantu meringankan beban para anak
               panti asuhan demi melangsungkan kehidupan mereka. Dukung panti
@@ -18,7 +18,7 @@ export default function TentangKami() {
               inovasi teknologi dan sistem geolokasi. Dengan tujuan meningkatkan
               kesejahteraan dan kualitas hidup para adik-adik yatim/dhuafa.
             </p>
-            <p>
+            <p className="font-medium max-w-[500px]">
               Mulai dari fitur layanan profil panti, halaman donasi, program
               pendampingan usaha, hingga pemasaran produk untuk memajukan panti
               asuhan. Dengan penyajian informasi yang up to date serta berbasis
@@ -41,7 +41,7 @@ export default function TentangKami() {
       </section>
       <section className={baseStyle}>
         <div className="my-10">
-          <h2 className="text-4xl font-semibold mb-9">
+          <h2 className="text-[28px] font-semibold mb-9">
             FAQ (Frequently Asked Questions)
           </h2>
           <div className="grid grid-cols-2 gap-x-20 gap-y-14">
@@ -68,7 +68,7 @@ export default function TentangKami() {
                     alt="logo-maps"
                     className="w-16 h-16 object-contain"
                   />
-                  <p className="text-center">{data.title}</p>
+                  <p className="text-center text-lg">{data.title}</p>
                   <p className="text-pink">{data.count}</p>
                 </div>
               );

@@ -11,8 +11,8 @@ export default function RootLayout() {
         <nav
           className={`${baseStyle} flex justify-between items-center w-full h-[75px]`}
         >
-          <img src={logoPanti} alt="Logo website panti" />
-          <ul className="flex justify-between gap-14 font-semibold text-xl text-[#767272]">
+          <img src={logoPanti} alt="Logo website panti" className="w-[200px]" />
+          <ul className="flex justify-between gap-14 font-semibold text-lg text-[#767272]">
             <li>
               <NavLink
                 className={({ isActive }) => isActive && "text-pink"}
@@ -24,9 +24,9 @@ export default function RootLayout() {
             <li>
               <NavLink
                 className={({ isActive }) => isActive && "text-pink"}
-                to={"program-donasi"}
+                to={"cari-panti"}
               >
-                Program Donasi
+                Cari Panti
               </NavLink>
             </li>
             <li>
@@ -54,14 +54,15 @@ export default function RootLayout() {
       <footer className="bg-gradient-to-b from-gradient-pink to-[#fff]">
         <div className={`${baseStyle} py-6 flex justify-between`}>
           <div className="max-w-[269px]">
-            <img src={logoPanti} alt="Logo website Panti" />
-            <p className="my-4">
+            <img
+              src={logoPanti}
+              alt="Logo website Panti"
+              className="w-[200px]"
+            />
+            <p className="my-4 text-sm">
               Berdonasi dengan mudah untuk membantu meringankan beban para anak
               panti asuhan demi melangsungkan kehidupan mereka.
             </p>
-            <button className="py-2 w-48 font-medium text-lg rounded-lg bg-white text-pink shadow drop-shadow-lg">
-              Donasi Sekarang
-            </button>
           </div>
           {footerData.map((data) => {
             return (
@@ -86,7 +87,11 @@ function FooterList({ title, list }) {
       <p className="font-semibold mb-5">{title}</p>
       <ul className="flex flex-col gap-2">
         {list.map((data) => {
-          return <li key={crypto.randomUUID()}>{data}</li>;
+          return (
+            <li className="text-sm" key={crypto.randomUUID()}>
+              {data}
+            </li>
+          );
         })}
       </ul>
     </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "tailwindcss/tailwind.css";
 import logoGooglePlay from "../../assets/Icons/logo-google-play.png";
 import { baseStyle } from "../../assets/styles";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -95,12 +96,12 @@ const LoginPage = () => {
           </div>
 
           <div>
-            <button
-              type="submit"
+            <Link
+              to="/profile"
               className=" group relative w-[400px] h-[50px] flex justify-center py-2 px-4 border border-transparent text-[24px]  rounded-md text-white bg-pink hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Masuk
-            </button>
+            </Link>
           </div>
           <div className="flex align-middle">
             <div className="bg-slate-400 h-px w-24 mt-2 me-3"></div>
@@ -120,7 +121,9 @@ const LoginPage = () => {
           <div>
             <p className=" text-center text-sm leading-none font-normal text-slate-400">
               Belum memiliki akun? yuk daftar{" "}
-              <span className="text-indigo-600 font-bold">Disini</span>
+              <Link to="/daftar" className="text-indigo-600 font-bold">
+                Disini
+              </Link>
             </p>
             <div className="bg-slate-400 h-px w-full mt-3"></div>
             <p className=" text-center text-sm leading-none font-normal text-slate-400 mt-3">
