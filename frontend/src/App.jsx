@@ -18,7 +18,7 @@ import {
   KonfirmasiUang,
   KonfirmasiBarang,
   Daftar,
-  KirimDoa,
+  Relawan,
 } from "./pages";
 
 import {
@@ -41,11 +41,12 @@ const router = createBrowserRouter(
         <Route path="kabar-panti2" element={<KabarPanti2 />} />
         <Route path="konfirmasi-uang" element={<KonfirmasiUang />} />
         <Route path="konfirmasi-barang" element={<KonfirmasiBarang />} />
+        <Route path="relawan" element={<Relawan />} />
+      </Route>
+      <Route element={<RootLayoutLogin />}>
         <Route path="login" element={<Login />} />
         <Route path="daftar" element={<Daftar />} />
-        <Route path="kirim-doa" element={<KirimDoa />} />
       </Route>
-      <Route element={<RootLayoutLogin />}></Route>
       <Route element={<RootLayoutAdmin />}>
         <Route path="profile" element={<Dashboard />} />
         <Route path="status-panti" element={<StatusPanti />} />

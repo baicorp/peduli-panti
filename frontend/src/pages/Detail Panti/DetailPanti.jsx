@@ -18,7 +18,7 @@ export default function DetailPanti() {
           </h1>
           <div className="flex gap-4">
             <Link
-              to="#"
+              to="/relawan"
               className="bg-pink text-white text-xl font-medium px-6 py-2 rounded-md"
             >
               Relawan

@@ -17,7 +17,7 @@ export default function RootLayoutAdmin() {
           <ul className="flex justify-between gap-14 font-semibold text-xl text-[#767272]">
             <li className="flex gap-1 items-center">
               <img src={logout} className="w-[22px] h-[22px]" alt="" />
-              <NavLink to={"logout"} className="text-lg">
+              <NavLink to={"/"} className="text-lg">
                 Keluar Akun
               </NavLink>
             </li>

@@ -8,7 +8,7 @@ import DetailPanti from "./Detail Panti/DetailPanti";
 import KonfirmasiUang from "./Konfirmasi/KonfirmasiUang";
 import KonfirmasiBarang from "./Konfirmasi/KonfirmasiBarang";
 import Daftar from "./Daftar/Daftar";
-import KirimDoa from "./KirimDoa/KirimDoa";
+import Relawan from "./Relawan/Relawan";
 
 export {
   Beranda,
@@ -21,5 +21,5 @@ export {
   KonfirmasiUang,
   KonfirmasiBarang,
   Daftar,
-  KirimDoa,
+  Relawan,
 };
