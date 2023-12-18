@@ -53,7 +53,7 @@ export default function AdminBelumTerdaftar() {
               htmlFor="noTlpPemilik"
               className="w-full max-w-[192px] font-semibold"
             >
-              Nama Tlp Pemilik Panti
+              No Tlp Pemilik
             </label>
             <input
               type="number"
@@ -97,17 +97,11 @@ export default function AdminBelumTerdaftar() {
             >
               Provinsi
             </label>
-            <select
+            <input
+              type="text"
               id="provinsi"
-              name="provinsi"
-              className="w-full border rounded-md px-3 py-1 outline-none"
-            >
-              <option value="null">--Pilih Provinsi--</option>
-              <option value="jawaTimur">Jawa Timur</option>
-              <option value="jawaBarat">Jawa Barat</option>
-              <option value="jawatengah">Jawa Tengah</option>
-              <option value="papua">Papua</option>
-            </select>
+              className="border rounded-md px-3 py-1 outline-none w-full"
+            />
           </div>
           <div className="flex justify-between gap-3">
             <label
@@ -135,6 +129,48 @@ export default function AdminBelumTerdaftar() {
               className="border rounded-md px-3 py-1 outline-none w-full"
             />
           </div>
+          <div className="flex justify-between gap-3">
+            <label
+              htmlFor="programPanti"
+              className="w-full max-w-[192px] font-semibold"
+            >
+              Program Panti
+            </label>
+            <input
+              type="text"
+              id="programPanti"
+              className="border rounded-md px-3 py-1 outline-none w-full"
+            />
+          </div>
+          <div className="flex flex-col gap-[14px]">
+            <label
+              htmlFor="deskripsiProgram"
+              className="w-full max-w-[192px] font-semibold"
+            >
+              Deskripsi Program
+            </label>
+            <textarea
+              name="deskripsiProgram"
+              id="deskripsiProgram"
+              cols="30"
+              rows="7"
+              className="border rounded-md px-3 py-1 outline-none"
+              placeholder="Isi artikel yang akan kamu unggah"
+            ></textarea>
+          </div>
+          <div className="flex justify-between gap-3">
+            <label
+              htmlFor="kebutuhanPanti"
+              className="w-full max-w-[192px] font-semibold"
+            >
+              Kebutuhan Panti
+            </label>
+            <input
+              type="text"
+              id="kebutuhanPanti"
+              className="border rounded-md px-3 py-1 outline-none w-full"
+            />
+          </div>
           <div className="flex flex-col gap-[14px]">
             <label
               htmlFor="deskripsiKebutuhan"
@@ -150,19 +186,6 @@ export default function AdminBelumTerdaftar() {
               className="border rounded-md px-3 py-1 outline-none"
               placeholder="Isi artikel yang akan kamu unggah"
             ></textarea>
-          </div>
-          <div className="flex justify-between gap-3">
-            <label
-              htmlFor="programPanti"
-              className="w-full max-w-[192px] font-semibold"
-            >
-              Program Panti
-            </label>
-            <input
-              type="text"
-              id="programPanti"
-              className="border rounded-md px-3 py-1 outline-none w-full"
-            />
           </div>
           <div className="flex justify-between gap-3">
             <label
@@ -203,56 +226,18 @@ export default function AdminBelumTerdaftar() {
               className="border rounded-md px-3 py-1 outline-none w-full"
             />
           </div>
-          <div className="flex flex-col gap-[14px]">
+          <div className="flex justify-between gap-3">
             <label
-              htmlFor="logo"
+              htmlFor="jumlahAnak"
               className="w-full max-w-[192px] font-semibold"
             >
-              Logo Panti
+              Jumlah Anak
             </label>
-            <div className="flex gap-5">
-              <svg
-                viewBox="0 0 256 256"
-                className="w-24 h-24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect fill="none" />
-                <rect
-                  fill="none"
-                  height="160"
-                  rx="8"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                  width="192"
-                  x="32"
-                  y="48"
-                />
-                <path
-                  d="M32,168l50.3-50.3a8,8,0,0,1,11.4,0l44.6,44.6a8,8,0,0,0,11.4,0l20.6-20.6a8,8,0,0,1,11.4,0L224,184"
-                  fill="none"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                />
-                <circle cx="156" cy="100" r="12" />
-              </svg>
-              <div>
-                <p>
-                  Max : 2MB. Ukuran 200 x 60 pixel.
-                  <br />
-                  Format : jpg | png
-                </p>
-                <input
-                  type="file"
-                  accept="image/png, image/jpeg, image/jpg"
-                  id="logo"
-                  className="mt-2"
-                />
-              </div>
-            </div>
+            <input
+              type="number"
+              id="jumlahAnak"
+              className="border rounded-md px-3 py-1 outline-none w-full"
+            />
           </div>
           <div className="flex flex-col gap-[14px]">
             <label
@@ -315,3 +300,4 @@ export default function AdminBelumTerdaftar() {
     </div>
   );
 }
+
