@@ -2,11 +2,14 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { baseStyle } from "../assets/styles/index";
 import logoPanti from "../assets/Icons/logo-panti.svg";
-import logout from "../assets/Icons/logout.svg";
+import logoutImg from "../assets/Icons/logout.svg";
+import { useAuth } from "../context/AuthContext";
 
 import PengurusPanti from "../assets/Icons/pengurus-panti.svg";
 
 export default function RootLayoutAdmin() {
+  const { logout } = useAuth();
+
   return (
     <>
       <header className="shadow-lg">
@@ -16,10 +19,10 @@ export default function RootLayoutAdmin() {
           <img src={logoPanti} alt="Logo website panti" className="w-[200px]" />
           <ul className="flex justify-between gap-14 font-semibold text-xl text-[#767272]">
             <li className="flex gap-1 items-center">
-              <img src={logout} className="w-[22px] h-[22px]" alt="" />
-              <NavLink to={"/"} className="text-lg">
+              <img src={logoutImg} className="w-[22px] h-[22px]" alt="" />
+              <button className="text-lg" onClick={logout}>
                 Keluar Akun
-              </NavLink>
+              </button>
             </li>
           </ul>
         </nav>
@@ -35,7 +38,9 @@ export default function RootLayoutAdmin() {
               <div>
                 <NavLink
                   to="profile"
-                  className={({ isActive }) => isActive && "text-pink"}
+                  className={({ isActive }) =>
+                    isActive ? "text-pink" : undefined
+                  }
                 >
                   <div className="flex items-center gap-4 px-3 py-4">
                     <svg
@@ -47,7 +52,7 @@ export default function RootLayoutAdmin() {
                       <path
                         d="M2.00002 21.154C2.00002 16.6893 6.07022 15.0002 10 15.0002C11.2829 15.0002 12.5807 15.1802 13.7471 15.578"
                         stroke="currentColor"
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                         strokeWidth="1.6px"
                       />
                       <path
@@ -73,7 +78,9 @@ export default function RootLayoutAdmin() {
               <div>
                 <NavLink
                   to="status-panti"
-                  className={({ isActive }) => isActive && "text-pink"}
+                  className={({ isActive }) =>
+                    isActive ? "text-pink" : undefined
+                  }
                 >
                   <div className="flex items-center gap-4 px-4 py-5">
                     <svg
@@ -95,7 +102,7 @@ export default function RootLayoutAdmin() {
               {/* <div>
                 <NavLink
                   to="donasi-masuk"
-                  className={({ isActive }) => isActive && "text-pink"}
+                  className={({ isActive }) => isActive ? "text-pink" : undefined}
                 >
                   <div className="flex items-center gap-4 px-4 py-5">
                     <svg
@@ -116,7 +123,9 @@ export default function RootLayoutAdmin() {
               <div>
                 <NavLink
                   to="kabar-panti-admin"
-                  className={({ isActive }) => isActive && "text-pink"}
+                  className={({ isActive }) =>
+                    isActive ? "text-pink" : undefined
+                  }
                 >
                   <div className="flex items-center gap-4 px-4 py-5">
                     <svg
@@ -139,7 +148,9 @@ export default function RootLayoutAdmin() {
               <div>
                 <NavLink
                   to="notifikasi"
-                  className={({ isActive }) => isActive && "text-pink"}
+                  className={({ isActive }) =>
+                    isActive ? "text-pink" : undefined
+                  }
                 >
                   <div className="flex items-center gap-4 px-4 py-5">
                     <svg

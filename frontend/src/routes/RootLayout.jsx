@@ -3,8 +3,10 @@ import { NavLink, Outlet } from "react-router-dom";
 import logoPanti from "../assets/Icons/logo-panti.svg";
 import { footerData } from "../constant";
 import { baseStyle } from "../assets/styles/index";
+import { useAuth } from "../context/AuthContext";
 
 export default function RootLayout() {
+  const { currentUser } = useAuth();
   return (
     <>
       <header className="shadow-lg mb-5">
@@ -15,7 +17,9 @@ export default function RootLayout() {
           <ul className="flex justify-between gap-14 font-semibold text-lg text-[#767272]">
             <li>
               <NavLink
-                className={({ isActive }) => isActive && "text-pink"}
+                className={({ isActive }) =>
+                  isActive ? "text-pink" : undefined
+                }
                 to={"/"}
               >
                 Beranda
@@ -23,7 +27,9 @@ export default function RootLayout() {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => isActive && "text-pink"}
+                className={({ isActive }) =>
+                  isActive ? "text-pink" : undefined
+                }
                 to={"cari-panti"}
               >
                 Cari Panti
@@ -31,19 +37,34 @@ export default function RootLayout() {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => isActive && "text-pink"}
+                className={({ isActive }) =>
+                  isActive ? "text-pink" : undefined
+                }
                 to={"tentang-kami"}
               >
                 Tentang Kami
               </NavLink>
             </li>
             <li>
-              <NavLink
-                className={({ isActive }) => isActive && "text-pink"}
-                to={"login"}
-              >
-                Login
-              </NavLink>
+              {currentUser ? (
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-pink" : undefined
+                  }
+                  to={"profile"}
+                >
+                  Dashboard
+                </NavLink>
+              ) : (
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-pink" : undefined
+                  }
+                  to={"login"}
+                >
+                  Login
+                </NavLink>
+              )}
             </li>
           </ul>
         </nav>

@@ -7,6 +7,8 @@ import {
 
 import { RootLayout, RootLayoutAdmin, RootLayoutLogin } from "./routes";
 
+import { PrivateRoute } from "./components";
+
 import {
   Beranda,
   CariPanti,
@@ -29,6 +31,8 @@ import {
   KabarPantiAdmin,
 } from "./pages/Admin";
 
+import { AuthProvider } from "./context/AuthContext";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -47,7 +51,13 @@ const router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="daftar" element={<Daftar />} />
       </Route>
-      <Route element={<RootLayoutAdmin />}>
+      <Route
+        element={
+          <PrivateRoute>
+            <RootLayoutAdmin />
+          </PrivateRoute>
+        }
+      >
         <Route path="profile" element={<Dashboard />} />
         <Route path="status-panti" element={<StatusPanti />} />
         <Route path="donasi-masuk" element={<DonasiMasuk />} />
@@ -60,9 +70,9 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <AuthProvider>
+      <RouterProvider router={router} />;
+    </AuthProvider>
   );
 }
 

@@ -43,9 +43,9 @@ export default function KabarPantiAdmin() {
                   height="160"
                   rx="8"
                   stroke="#000"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                   width="192"
                   x="32"
                   y="48"
@@ -54,9 +54,9 @@ export default function KabarPantiAdmin() {
                   d="M32,168l50.3-50.3a8,8,0,0,1,11.4,0l44.6,44.6a8,8,0,0,0,11.4,0l20.6-20.6a8,8,0,0,1,11.4,0L224,184"
                   fill="none"
                   stroke="#000"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 />
                 <circle cx="156" cy="100" r="12" />
               </svg>

@@ -1,16 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "tailwindcss/tailwind.css";
 import logoGooglePlay from "../../assets/Icons/logo-google-play.png";
 import { baseStyle } from "../../assets/styles";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [notif, setNotif] = useState("");
+  const notification = useRef();
+  const { login, currentUser } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  if (currentUser) {
+    return <Navigate to={"/profile"} replace />;
+  }
+
+  function showNotif(status) {
+    if (status === "success") {
+      notification.current.classList.add("bg-green-500");
+    } else if (status === "error") {
+      notification.current.classList.add("bg-rose-500");
+    }
+    setTimeout(() => {
+      notification.current.style.top = "-100%";
+    }, 3000);
+    notification.current.style.top = "3rem";
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      console.log("masuk");
+      const resUser = await login(email, password);
+      console.log("keluar");
+      if (!resUser) {
+        setNotif("Email atau password salah");
+        showNotif("error");
+        return;
+      }
+      console.log("login success");
+      return navigate("/profile");
+    } catch (error) {
+      setNotif("Email atau password salah");
+      showNotif("error");
+    }
   };
 
   return (
@@ -96,45 +132,37 @@ const LoginPage = () => {
           </div>
 
           <div>
-            <Link
-              to="/profile"
-              className=" group relative w-[400px] h-[50px] flex justify-center py-2 px-4 border border-transparent text-[24px]  rounded-md text-white bg-pink hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Masuk
-            </Link>
-          </div>
-          <div className="flex align-middle">
-            <div className="bg-slate-400 h-px w-24 mt-2 me-3"></div>
-            <p className=" text-center text-sm leading-none font-normal text-slate-400">
-              Masuk menggunakan google
-            </p>
-            <div className="bg-slate-400 h-px w-24 mt-2 ms-3"></div>
-          </div>
-          <div className="flex justify-center">
             <button
               type="submit"
-              className="group relative w-24 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="  w-[400px] h-[50px] flex justify-center py-2 px-4 border border-transparent text-[24px]  rounded-md text-white bg-pink hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Google
+              Masuk
             </button>
           </div>
-          <div>
-            <p className=" text-center text-sm leading-none font-normal text-slate-400">
-              Belum memiliki akun? yuk daftar{" "}
-              <Link to="/daftar" className="text-indigo-600 font-bold">
-                Disini
-              </Link>
-            </p>
-            <div className="bg-slate-400 h-px w-full mt-3"></div>
-            <p className=" text-center text-sm leading-none font-normal text-slate-400 mt-3">
-              Download Aplikasi
-            </p>
-            <div className="flex justify-center mt-3">
-              <img src={logoGooglePlay} alt="logo-google-play" />
-            </div>
-          </div>
         </form>
+        <div>
+          <p className=" text-center text-sm leading-none font-normal text-slate-400">
+            Belum memiliki akun? yuk daftar{" "}
+            <Link to="/daftar" className="text-indigo-600 font-bold">
+              Disini
+            </Link>
+          </p>
+          <div className="bg-slate-400 h-px w-full mt-3"></div>
+          <p className=" text-center text-sm leading-none font-normal text-slate-400 mt-3">
+            Download Aplikasi
+          </p>
+          <div className="flex justify-center mt-3">
+            <img src={logoGooglePlay} alt="logo-google-play" />
+          </div>
+        </div>
       </div>
+      <div
+        ref={notification}
+        className="fixed -top-full left-10 rounded-lg duration-300"
+      >
+        <p className="text-lg px-5 py-3 text-white font-bold">{notif}</p>
+      </div>
+      ;
     </div>
   );
 };

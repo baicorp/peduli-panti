@@ -15,7 +15,6 @@ export default function CardPanti({
 }) {
   return (
     <Link
-      key={crypto.randomUUID()}
       to={"123"}
       className="bg-light-pink rounded-xl overflow-hidden max-w-[390px]"
     >
