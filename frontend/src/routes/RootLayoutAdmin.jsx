@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { baseStyle } from "../assets/styles/index";
 import logoPanti from "../assets/Icons/logo-panti.svg";
@@ -8,7 +8,29 @@ import { useAuth } from "../context/AuthContext";
 import PengurusPanti from "../assets/Icons/pengurus-panti.svg";
 
 export default function RootLayoutAdmin() {
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
+  const [namaPanti, setNamaPanti] = useState("");
+
+  const userId = currentUser.uid;
+
+  useEffect(() => {
+    async function getDataPanti() {
+      try {
+        const res = await fetch(
+          `http://127.0.0.1:3000/profiles/user/${userId}`
+        );
+        if (!res.ok) {
+          setNamaPanti("");
+          return;
+        }
+        const data = await res.json();
+        setNamaPanti(data[0].nama_panti);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getDataPanti();
+  }, [userId]);
 
   return (
     <>
@@ -32,7 +54,7 @@ export default function RootLayoutAdmin() {
           <aside className="font-semibold">
             <div className="flex items-center gap-4 border border-border-color bg-white rounded-lg shadow-lg px-8 py-6 w-[260px] mb-6">
               <img src={PengurusPanti} alt="" />
-              <p>Nama Pengurus Panti</p>
+              <p>{namaPanti}</p>
             </div>
             <div className="w-[260px] px-4 py-1 border border-border-color bg-white rounded-lg shadow-lg divide-y-2 divide-[#E5DCDC]">
               <div>

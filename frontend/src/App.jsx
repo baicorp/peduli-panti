@@ -28,7 +28,8 @@ import {
   DonasiMasuk,
   Notifikasi,
   StatusPanti,
-  KabarPantiAdmin,
+  KabarPantiList,
+  BuatKabarPanti,
 } from "./pages/Admin";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -39,10 +40,10 @@ const router = createBrowserRouter(
       <Route element={<RootLayout />}>
         <Route path="/" element={<Beranda />} index />
         <Route path="cari-panti" element={<CariPanti />} />
-        <Route path="cari-panti/:idPanti" element={<DetailPanti />} />
+        <Route path="cari-panti/panti/:idPanti" element={<DetailPanti />} />
         <Route path="tentang-kami" element={<TentangKami />} />
         <Route path="kabar-panti" element={<KabarPanti />} />
-        <Route path="kabar-panti2" element={<KabarPanti2 />} />
+        <Route path="kabar-panti/:idArticle" element={<KabarPanti2 />} />
         <Route path="konfirmasi-uang" element={<KonfirmasiUang />} />
         <Route path="konfirmasi-barang" element={<KonfirmasiBarang />} />
         <Route path="relawan" element={<Relawan />} />
@@ -61,7 +62,8 @@ const router = createBrowserRouter(
         <Route path="profile" element={<Dashboard />} />
         <Route path="status-panti" element={<StatusPanti />} />
         <Route path="donasi-masuk" element={<DonasiMasuk />} />
-        <Route path="kabar-panti-admin" element={<KabarPantiAdmin />} />
+        <Route path="kabar-panti-admin" element={<KabarPantiList />} />
+        <Route path="kabar-panti-admin/buat" element={<BuatKabarPanti />} />
         <Route path="notifikasi" element={<Notifikasi />} />
       </Route>
     </Route>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { baseStyle } from "../../assets/styles";
 import detailPanti from "../../assets/Images/detail-panti.jpg";
@@ -6,17 +6,48 @@ import share from "../../assets/Icons/share.svg";
 
 export default function DetailPanti() {
   const { idPanti } = useParams();
+  const [dataPanti, setDataPanti] = useState({
+    nama_panti: "",
+    image: "",
+    nama_pemilik: "",
+    notelp_pemilik: "",
+    notelp_panti: "",
+    alamat_panti: "",
+    kecamatan: "",
+    kabupaten: "",
+    provinsi: "",
+    deskripsi_panti: "",
+    deskripsi_kebutuhan: "",
+    kebutuhan_panti: "",
+    jumlah_anaklaki: "",
+    jumlah_anakpr: "",
+    program_panti: "",
+  });
   const [detailButton, setDetailButton] = useState("deskripsiPanti");
+
+  useEffect(() => {
+    async function getPantiById() {
+      const res = await fetch(`http://127.0.0.1:3000/profiles/${idPanti}`);
+      const data = await res.json();
+      console.log(data[0]);
+      setDataPanti(data[0]);
+    }
+    getPantiById();
+  }, []);
 
   return (
     <section className={`${baseStyle}`}>
       <div className="px-9 py-6 rounded-lg shadow-2xl my-8">
-        <img src={detailPanti} alt="" className="mb-12" />
+        <img
+          src={`http://127.0.0.1:3000/images/profile/${dataPanti.image}`}
+          alt=""
+          className="w-full h-72 object-cover mb-12"
+        />
         <div className="flex justify-between items-center mb-10">
           <h1 className="font-semibold text-3xl text-pink">
-            Panti Bina Remaja Mandiri
+            {dataPanti.nama_panti}
           </h1>
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <Link
               to="/relawan"
               className="bg-pink text-white text-xl font-medium px-6 py-2 rounded-md"
@@ -24,7 +55,7 @@ export default function DetailPanti() {
               Relawan
             </Link>
             <img src={share} alt="" />
-          </div>
+          </div> */}
         </div>
         <hr />
         <div className="w-full flex justify-between gap-4 mt-[14px] mb-6">
@@ -51,9 +82,20 @@ export default function DetailPanti() {
         </div>
         <div>
           {detailButton === "deskripsiPanti" ? (
-            <DeskripsiPanti />
+            <DeskripsiPanti
+              namaPemilik={dataPanti.nama_pemilik}
+              kontak={`${dataPanti.notelp_pemilik} / ${dataPanti.notelp_panti}`}
+              alamat={`${dataPanti.alamat_panti}, ${dataPanti.kecamatan}, ${dataPanti.kabupaten}, ${dataPanti.provinsi}`}
+              deskripsi={dataPanti.deskripsi_panti}
+            />
           ) : (
-            <KebutuhanPanti />
+            <KebutuhanPanti
+              deskripsiKebutuhan={dataPanti.deskripsi_kebutuhan}
+              listKebutuhan={dataPanti.kebutuhan_panti}
+              anakLaki={dataPanti.jumlah_anaklaki}
+              anakPr={dataPanti.jumlah_anakpr}
+              listProgramPanti={dataPanti.program_panti}
+            />
           )}
         </div>
       </div>
@@ -61,74 +103,69 @@ export default function DetailPanti() {
   );
 }
 
-function DeskripsiPanti({ namaPemilik, kontak, Alamat, deskripsi }) {
+function DeskripsiPanti({ namaPemilik, kontak, alamat, deskripsi }) {
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h2 className="text-xl font-extrabold mb-3">Nama Pemilik</h2>
-        <p className="text-lg">Ibu Ferliani Anggraeni</p>
+        <p className="text-lg">{namaPemilik}</p>
       </div>
       <div>
         <h2 className="text-xl font-extrabold mb-3">Kontak</h2>
-        <p className="text-lg">+62 812-6314-7664 / (021) 7873042</p>
+        <p className="text-lg">{kontak}</p>
       </div>
       <div>
         <h2 className="text-xl font-extrabold mb-3">Alamat</h2>
-        <p className="text-lg">
-          Jl Banjaran Pucung, Gg. Masjid Al Ikhlas Jl. Emeralda Raya No.100,
-          RT.3/RW.10, Cilangkap, Kec. Tapos, Kota Depok, Jawa Barat 16458,
-          Indonesia
-        </p>
+        <p className="text-lg">{alamat}</p>
       </div>
       <div>
         <h2 className="text-xl font-extrabold mb-3">Deskripsi</h2>
-        <p className="text-lg">
-          Panti kami telah berdiri di Kota Depok sejak tahun 2009, yang
-          berkonsentrasi di pelayanan: 1. Tumbuh kembang anak yatim dan dhuafa
-          yang berusia balita hingga remaja terlantar (yang dititipkan oleh
-          kepolisian, dinas sosial, serta warga sekitar depok & luar depok) 2.
-          Taman Anak Sejahtera, (program dari Kementrian Sosial RI untuk wilayah
-          Depok), program ini layaknya Daycare, namun untuk anak dari orang tua
-          berpenghasilan minim yang harus bekerja untuk memenuhi kebutuhan
-          hidupnya (pedagang kaki lima, buruh cuci, buruh pasar, dll), dan
-          setelah bekerja mereka akan menjemput anaknya pulang ke rumah.
-        </p>
+        <p className="text-lg">{deskripsi}</p>
       </div>
     </div>
   );
 }
 
-function KebutuhanPanti({ kebutuhan, totalAnak, programPanti }) {
+function KebutuhanPanti({
+  listKebutuhan,
+  deskripsiKebutuhan,
+  anakLaki,
+  anakPr,
+  listProgramPanti,
+}) {
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h2 className="text-xl font-extrabold mb-3">Kebutuhan</h2>
         <div className="text-lg">
-          <p>Membutuhkan Keperluan Makanan, terkhususnya: </p>
+          <p>{deskripsiKebutuhan} : </p>
           <ul className="list-disc ml-10">
-            <li>Beras</li>
-            <li>Susu</li>
-            <li>Pampers</li>
+            {listKebutuhan.split(",").map((data) => (
+              <li>{data}</li>
+            ))}
           </ul>
         </div>
       </div>
       <div>
         <h2 className="text-xl font-extrabold mb-3">Total Anak</h2>
         <div className="text-lg">
-          <p>Total 40 anak, terdiri dari:</p>
+          <p>
+            Total {parseInt(anakLaki) + parseInt(anakPr)} anak, terdiri dari:
+          </p>
           <ul className="list-disc ml-10">
-            <li>Beras</li>
-            <li>Susu</li>
-            <li>Pampers</li>
+            <li>Laki-laki : {anakLaki} anak</li>
+            <li>Perempuan : {anakPr} anak</li>
           </ul>
         </div>
       </div>
       <div>
         <h2 className="text-xl font-extrabold mb-3">Program Panti</h2>
         <div className="text-lg">
+          <p>Berikut program panti : </p>
           <ul className="list-disc ml-10">
-            <li>Beasiswa Kakak Asuh</li>
-            <li>Produk usaha Kuliner (Binari Fried Chicken dan lele olahan)</li>
+            {listProgramPanti.split(",").map((data) => (
+              <li>{data}</li>
+            ))}
           </ul>
         </div>
       </div>

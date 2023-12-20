@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import programDonasi from "../../assets/Images/program-donasi.jpg";
 import programDonasiBanner from "../../assets/Images/program-donasi-banner.jpg";
@@ -7,6 +7,26 @@ import { baseStyle } from "../../assets/styles";
 import { CardPanti } from "../../components";
 
 export default function CariPanti() {
+  const [listPanti, setListPanti] = useState([]);
+  const [cari, setCari] = useState("");
+
+  useEffect(() => {
+    async function getListPanti(params) {
+      const res = await fetch(`http://127.0.0.1:3000/profiles`);
+      const data = await res.json();
+      setListPanti(data);
+    }
+    getListPanti();
+  }, []);
+
+  async function handleCari() {
+    const res = await fetch(
+      `http://127.0.0.1:3000/profiles/location?lokasi=${cari}`
+    );
+    const data = await res.json();
+    setListPanti(data);
+  }
+
   return (
     <>
       <section>
@@ -31,9 +51,16 @@ export default function CariPanti() {
                 <input
                   type="text"
                   className="text-black outline-none rounded-md p-2 max-w-[310px] w-full"
-                  placeholder="Cari panti"
+                  placeholder="Masukkan kabupaten/kota"
+                  onChange={(e) => {
+                    setCari(e.target.value);
+                  }}
+                  value={cari}
                 />
-                <button className="bg-pink text-white rounded-md px-5 flex justify-center items-center">
+                <button
+                  className="bg-pink text-white rounded-md px-5 flex justify-center items-center"
+                  onClick={handleCari}
+                >
                   <p>Cari</p>
                 </button>
               </div>
@@ -44,9 +71,18 @@ export default function CariPanti() {
       <section
         className={`${baseStyle} py-12 grid grid-cols-3 gap-x-8 gap-y-12`}
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((data) => {
-          return <CardPanti key={crypto.randomUUID()} />;
-        })}
+        {(listPanti.length !== 0 &&
+          listPanti.map((data) => {
+            return (
+              <CardPanti
+                key={crypto.randomUUID()}
+                id={data.id}
+                image={data.image}
+                namaPanti={data.nama_panti}
+                alamat={`${data.alamat_panti} ${data.kecamatan} ${data.kabupaten} ${data.provinsi}`}
+              />
+            );
+          })) || <p>Belum ada panti terdaftar</p>}
       </section>
     </>
   );

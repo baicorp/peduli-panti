@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import "tailwindcss/tailwind.css";
 import logoGooglePlay from "../../assets/Icons/logo-google-play.png";
 import { baseStyle } from "../../assets/styles";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { useAuth } from "../../context/AuthContext";
 
@@ -14,6 +14,7 @@ const DaftarPage = () => {
   const [notif, setNotif] = useState("");
   const notification = useRef();
   const { signup } = useAuth();
+  const navigate = useNavigate();
 
   function showNotif(status) {
     if (status === "success") {
@@ -53,11 +54,12 @@ const DaftarPage = () => {
 
       if (addUser.ok) {
         console.log("User data successfully added to the database.");
-        setNotif("success signup");
         setTimeout(() => {
-          return <Navigate to={"/login"} replace />;
+          // return <Navigate to={"/login"} replace />;
+          return navigate("/profile");
         }, 3000);
         showNotif("success");
+        setNotif("success signup");
       } else {
         console.error(
           "Error adding user data to the database:",

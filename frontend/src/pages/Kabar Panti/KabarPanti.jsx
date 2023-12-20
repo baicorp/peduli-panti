@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { baseStyle } from "../../assets/styles";
 import bantuan from "../../assets/Images/bantuan.jpeg";
 import calendar from "../../assets/Icons/calendar.svg";
 import { CardKabarPanti } from "../../components";
 
 export default function KabarPanti() {
+  const [articles, setArticles] = useState();
+  useEffect(() => {
+    async function getDataArticle() {
+      const res = await fetch("http://127.0.0.1:3000/articles/");
+      const data = await res.json();
+      setArticles(data);
+    }
+    getDataArticle();
+  }, []);
   return (
     <>
       <section className={baseStyle}>
@@ -13,42 +22,18 @@ export default function KabarPanti() {
         </h1>
       </section>
       <section className={`${baseStyle} mt-14 mb-10 grid grid-cols-3 gap-4`}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14].map(() => {
-          return (
-            // <div
-            //   key={crypto.randomUUID()}
-            //   className="max-w-[390px] drop-shadow-xl rounded-xl overflow-hidden bg-gradient-to-b from-gradient-pink to-white"
-            // >
-            //   <img src={bantuan} alt="" />
-            //   <div className=" space-y-3 p-4">
-            //     <div className="flex items-center gap-2">
-            //       <img src={calendar} alt="" />
-            //       <p className="font-semibold">
-            //         Penyaluran Alat sekolah kepada 89 anak panti
-            //       </p>
-            //     </div>
-            //     <p>
-            //       Bandung - Sabtu 2 Oktober 2023, melakukan “kolaborasi
-            //       kebaikan” bersama sahabat yatim indonesia dalam rangka
-            //       menyalurkan program Yatim berprestasi.
-            //     </p>
-            //     <button className="font-semibold text-xs text-white bg-pink p-[6px] rounded-full">
-            //       CSR
-            //     </button>
-            //     <button className="block shadow-lg text-xs p-2 rounded-md border-[1.5px] border-black">
-            //       selengkapnya
-            //     </button>
-            //   </div>
-            // </div>
-            <CardKabarPanti
-              key={crypto.randomUUID()}
-              img={bantuan}
-              judul="Penyaluran Alat sekolah kepada 89 anak panti"
-              deskripsi="Bandung - Sabtu 2 Oktober 2023, melakukan “kolaborasi kebaikan” bersama sahabat yatim indonesia dalam rangka menyalurkan program Yatim berprestasi."
-              link="/kabar-panti2"
-            />
-          );
-        })}
+        {(articles &&
+          articles.map((data) => {
+            return (
+              <CardKabarPanti
+                key={crypto.randomUUID()}
+                img={`http://127.0.0.1:3000/images/article/${data.image}`}
+                judul={data.title}
+                deskripsi={data.description}
+                id={`${data.id}`}
+              />
+            );
+          })) || <p>Belum ada artikel</p>}
       </section>
     </>
   );

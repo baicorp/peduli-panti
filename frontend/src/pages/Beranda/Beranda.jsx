@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,6 +20,22 @@ export default function Beranda() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
+  const [article, setArticle] = useState();
+
+  useEffect(() => {
+    async function getThreeLastArticle() {
+      const res = await fetch("http://127.0.0.1:3000/articles/home");
+      if (!res.ok) {
+        setArticle(null);
+        return;
+      }
+      const data = await res.json();
+      // console.log("data");
+      setArticle(data);
+    }
+    getThreeLastArticle();
+  }, []);
 
   return (
     <>
@@ -50,17 +66,18 @@ export default function Beranda() {
           <span className="underline font-bold text-pink">Panti Peduli</span>
         </h1>
         <div className="grid grid-cols-3 gap-4">
-          {[1, 2, 3].map(() => {
-            return (
-              <CardKabarPanti
-                key={crypto.randomUUID()}
-                img={bantuan}
-                judul="Penyaluran Alat sekolah kepada 89 anak panti"
-                deskripsi="Bandung - Sabtu 2 Oktober 2023, melakukan “kolaborasi kebaikan” bersama sahabat yatim indonesia dalam rangka menyalurkan program Yatim berprestasi."
-                link="/kabar-panti2"
-              />
-            );
-          })}
+          {(article &&
+            article.map((data) => {
+              return (
+                <CardKabarPanti
+                  key={crypto.randomUUID()}
+                  img={`http://127.0.0.1:3000/images/article/${data.image}`}
+                  judul={data.title}
+                  deskripsi={data.description}
+                  id={data.id}
+                />
+              );
+            })) || <p>Loading. . .</p>}
         </div>
         <div className="flex justify-center">
           <Link
