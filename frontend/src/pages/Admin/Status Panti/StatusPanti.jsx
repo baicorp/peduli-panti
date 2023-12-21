@@ -24,19 +24,16 @@ export default function StatusPanti() {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("sertifikat_panti", sertifikatPanti);
+      formData.append("image", sertifikatPanti);
 
       const addCertificate = await fetch(
         `http://127.0.0.1:3000/profiles/certificate/${userId}`,
         {
           method: "POST",
           body: formData,
-          headers: {
-            // Set the Content-Type header for file upload
-            "Content-Type": "multipart/form-data",
-          },
         }
       );
+
       if (!addCertificate.ok) {
         console.log("tidak berhasil upload");
         return;
