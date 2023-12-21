@@ -89,6 +89,7 @@ export default function AdminBelumTerdaftar({ refresh }) {
       form.append(key, value);
     });
 
+    console.log(formData);
     const tambahDataPanti = await fetch("http://127.0.0.1:3000/profiles", {
       method: "POST",
       body: form,
@@ -193,7 +194,7 @@ export default function AdminBelumTerdaftar({ refresh }) {
           </div>
           <div className="flex gap-[14px]">
             <label
-              htmlFor="alamat"
+              htmlFor="alamat_panti"
               className="w-full max-w-[192px] font-semibold"
             >
               Alamat
@@ -273,59 +274,6 @@ export default function AdminBelumTerdaftar({ refresh }) {
               ))}
             </select>
           </div>
-          <div className="flex justify-between gap-3">
-            <label
-              htmlFor="programPanti"
-              className="w-full max-w-[192px] font-semibold"
-            >
-              Program Panti
-            </label>
-            <select
-              type="text"
-              id="kecamatan"
-              name="kecamatan"
-              onChange={handleInputChange}
-              className="w-full border rounded-md px-3 py-1 outline-none"
-            >
-              <option value="null">--Pilih Kecamatan--</option>
-              {kecamatan.map((data) => (
-                <option key={data.id} value={data.text.toLowerCase()}>
-                  {data.text}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col gap-[14px]">
-            <label
-              htmlFor="deskripsiProgram"
-              className="w-full max-w-[192px] font-semibold"
-            >
-              Deskripsi Program
-            </label>
-            <textarea
-              name="deskripsiProgram"
-              id="deskripsiProgram"
-              cols="30"
-              rows="3"
-              className="border rounded-md px-3 py-1 outline-none"
-              value={formData.deskripsi_kebutuhan}
-              onChange={handleInputChange}
-              placeholder="Isi deskripsi singkat kebutuhan"
-            ></textarea>
-          </div>
-          <div className="flex justify-between gap-3">
-            <label
-              htmlFor="kebutuhanPanti"
-              className="w-full max-w-[192px] font-semibold"
-            >
-              Kebutuhan Panti
-            </label>
-            <input
-              type="text"
-              id="kebutuhanPanti"
-              className="border rounded-md px-3 py-1 outline-none w-full"
-            />
-          </div>
           <div className="flex flex-col gap-[14px]">
             <label
               htmlFor="deskripsi_kebutuhan"
@@ -346,15 +294,34 @@ export default function AdminBelumTerdaftar({ refresh }) {
           </div>
           <div className="flex justify-between gap-3">
             <label
-              htmlFor="programPanti"
+              htmlFor="kebutuhan_panti"
+              className="w-full max-w-[192px] font-semibold"
+            >
+              Kebutuhan Panti
+            </label>
+            <input
+              type="text"
+              id="kebutuhan_panti"
+              className="border rounded-md px-3 py-1 outline-none w-full"
+              placeholder="beras, sayuran, ikan"
+              value={formData.kebutuhan_panti}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="flex justify-between gap-3">
+            <label
+              htmlFor="program_panti"
               className="w-full max-w-[192px] font-semibold"
             >
               Program Panti
             </label>
             <input
               type="text"
-              id="programPanti"
+              id="program_panti"
               className="border rounded-md px-3 py-1 outline-none w-full"
+              placeholder="mengaji, hafalan al-quran"
+              value={formData.program_panti}
+              onChange={handleInputChange}
             />
           </div>
           <div className="flex justify-between gap-3">
@@ -391,7 +358,7 @@ export default function AdminBelumTerdaftar({ refresh }) {
           </div>
           <div className="flex justify-between gap-3">
             <label
-              htmlFor="jumlahAnakPerempuan"
+              htmlFor="jumlah_anakpr"
               className="w-full max-w-[192px] font-semibold"
             >
               Jumlah Anak Perempuan
@@ -405,57 +372,7 @@ export default function AdminBelumTerdaftar({ refresh }) {
               className="border rounded-md px-3 py-1 outline-none w-full"
             />
           </div>
-          <div className="flex justify-between gap-3">
-            <label
-              htmlFor="logo"
-              className="w-full max-w-[192px] font-semibold"
-            >
-              Logo Panti
-            </label>
-            <div className="flex gap-5">
-              <svg
-                viewBox="0 0 256 256"
-                className="w-24 h-24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect fill="none" />
-                <rect
-                  fill="none"
-                  height="160"
-                  rx="8"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                  width="192"
-                  x="32"
-                  y="48"
-                />
-                <path
-                  d="M32,168l50.3-50.3a8,8,0,0,1,11.4,0l44.6,44.6a8,8,0,0,0,11.4,0l20.6-20.6a8,8,0,0,1,11.4,0L224,184"
-                  fill="none"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                />
-                <circle cx="156" cy="100" r="12" />
-              </svg>
-              <div>
-                <p>
-                  Max : 2MB. Ukuran 200 x 60 pixel.
-                  <br />
-                  Format : jpg | png
-                </p>
-                <input
-                  type="file"
-                  accept="image/png, image/jpeg, image/jpg"
-                  id="logo"
-                  className="mt-2"
-                />
-              </div>
-            </div>
-          </div>
+
           <div className="flex flex-col gap-[14px]">
             <label
               htmlFor="foto"
