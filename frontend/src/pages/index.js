@@ -1,5 +1,6 @@
 import Beranda from "./Beranda/Beranda";
 import CariPanti from "./Cari Panti/CariPanti";
+import CariPanti2 from "./Cari Panti/CariPanti2";
 import TentangKami from "./Tentang Kami/TentangKami";
 import KabarPanti from "./Kabar Panti/KabarPanti";
 import KabarPanti2 from "./Kabar Panti/KabarPanti2";
@@ -13,6 +14,7 @@ import Relawan from "./Relawan/Relawan";
 export {
   Beranda,
   CariPanti,
+  CariPanti2,
   TentangKami,
   KabarPanti,
   KabarPanti2,

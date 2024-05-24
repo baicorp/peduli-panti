@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import programDonasi from "../../assets/Images/program-donasi.jpg";
-import programDonasiBanner from "../../assets/Images/program-donasi-banner.jpg";
-import search from "../../assets/Icons/search.svg";
+import programDonasiBanner from "./program-donasi-banner.jpg";
 import { baseStyle } from "../../assets/styles";
 import { CardPanti } from "../../components";
+import { BASE_URL } from "../../constant";
 
 export default function CariPanti() {
   const [listPanti, setListPanti] = useState([]);
   const [cari, setCari] = useState("");
 
   useEffect(() => {
-    async function getListPanti(params) {
-      const res = await fetch(`http://127.0.0.1:3000/profiles`);
+    async function getListPanti() {
+      const res = await fetch(`${BASE_URL}/profiles`);
       const data = await res.json();
       setListPanti(data);
     }
@@ -20,9 +19,7 @@ export default function CariPanti() {
   }, []);
 
   async function handleCari() {
-    const res = await fetch(
-      `http://127.0.0.1:3000/profiles/location?lokasi=${cari}`
-    );
+    const res = await fetch(`${BASE_URL}/profiles/location?lokasi=${cari}`);
     const data = await res.json();
     setListPanti(data);
   }
@@ -40,7 +37,7 @@ export default function CariPanti() {
                 DAFTARKAN PANTIMU, NIKMATI MANFAATNYA!
               </h1>
               <Link
-                to={"#"}
+                to={"/daftar"}
                 className="text-lg flex items-center px-3 h-10 rounded-md bg-pink"
               >
                 Daftar Panti
@@ -72,10 +69,10 @@ export default function CariPanti() {
         className={`${baseStyle} py-12 grid grid-cols-3 gap-x-8 gap-y-12`}
       >
         {(listPanti.length !== 0 &&
-          listPanti.map((data) => {
+          listPanti.map((data, index) => {
             return (
               <CardPanti
-                key={crypto.randomUUID()}
+                key={index}
                 id={data.id}
                 image={data.image}
                 namaPanti={data.nama_panti}

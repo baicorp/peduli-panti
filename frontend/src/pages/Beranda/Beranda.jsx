@@ -9,7 +9,7 @@ import hero from "../../assets/Images/hero-donatur.jpg";
 import calendar from "../../assets/Icons/calendar.svg";
 import { Link } from "react-router-dom";
 
-import { alasanDonasiData, doaDonaturData } from "../../constant";
+import { BASE_URL, alasanDonasiData, doaDonaturData } from "../../constant";
 import CardKabarPanti from "../../components/CardKabarPanti";
 
 export default function Beranda() {
@@ -25,7 +25,7 @@ export default function Beranda() {
 
   useEffect(() => {
     async function getThreeLastArticle() {
-      const res = await fetch("http://127.0.0.1:3000/articles/home");
+      const res = await fetch(`${BASE_URL}/articles/home`);
       if (!res.ok) {
         setArticle(null);
         return;

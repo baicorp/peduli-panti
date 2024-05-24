@@ -1,4 +1,5 @@
 import React from "react";
+import { BASE_URL } from "../../../constant";
 // import fotoProfilePanti from "../../../assets/Images/foto-profile-panti.jpg";
 
 export default function AdminTerdaftar({
@@ -23,7 +24,7 @@ export default function AdminTerdaftar({
   return (
     <div className="px-9 py-6">
       <img
-        src={`http://127.0.0.1:3000/images/profile/${image}`}
+        src={`${BASE_URL}/images/profile/${image}`}
         alt="foto profil panti"
         className="rounded-lg mb-[22px] w-full object-cover"
       />

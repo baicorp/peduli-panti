@@ -127,3 +127,6 @@ export const doaDonaturData = [
     doa: "Semoga terus memberikan pelayanan yang luar biasa dalam membantu orang-orang menemukan panti asuhan yang membutuhkan, sehingga kasih sayang dan dukungan dapat tersalurkan dengan lebih efisien dan berdampak positif.",
   },
 ];
+
+export const BASE_URL = "https://backend-panti-peduli.vercel.app";
+// export const BASE_URL = "http://localhost:3000";

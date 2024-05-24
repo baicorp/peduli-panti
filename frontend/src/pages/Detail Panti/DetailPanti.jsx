@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { baseStyle } from "../../assets/styles";
-import detailPanti from "../../assets/Images/detail-panti.jpg";
-import share from "../../assets/Icons/share.svg";
+import DeskripsiPanti from "./DeskripsiPanti";
+import { BASE_URL } from "../../constant";
 
 export default function DetailPanti() {
   const { idPanti } = useParams();
@@ -27,7 +27,7 @@ export default function DetailPanti() {
 
   useEffect(() => {
     async function getPantiById() {
-      const res = await fetch(`http://127.0.0.1:3000/profiles/${idPanti}`);
+      const res = await fetch(`${BASE_URL}/profiles/${idPanti}`);
       const data = await res.json();
       console.log(data[0]);
       setDataPanti(data[0]);
@@ -39,7 +39,7 @@ export default function DetailPanti() {
     <section className={`${baseStyle}`}>
       <div className="px-9 py-6 rounded-lg shadow-2xl my-8">
         <img
-          src={`http://127.0.0.1:3000/images/profile/${dataPanti.image}`}
+          src={`${BASE_URL}/images/profile/${dataPanti.image}`}
           alt=""
           className="w-full h-72 object-cover mb-12"
         />
@@ -47,15 +47,6 @@ export default function DetailPanti() {
           <h1 className="font-semibold text-3xl text-pink">
             {dataPanti.nama_panti}
           </h1>
-          {/* <div className="flex gap-4">
-            <Link
-              to="/relawan"
-              className="bg-pink text-white text-xl font-medium px-6 py-2 rounded-md"
-            >
-              Relawan
-            </Link>
-            <img src={share} alt="" />
-          </div> */}
         </div>
         <hr />
         <div className="w-full flex justify-between gap-4 mt-[14px] mb-6">
@@ -103,30 +94,7 @@ export default function DetailPanti() {
   );
 }
 
-function DeskripsiPanti({ namaPemilik, kontak, alamat, deskripsi }) {
-  return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <h2 className="text-xl font-extrabold mb-3">Nama Pemilik</h2>
-        <p className="text-lg">{namaPemilik}</p>
-      </div>
-      <div>
-        <h2 className="text-xl font-extrabold mb-3">Kontak</h2>
-        <p className="text-lg">{kontak}</p>
-      </div>
-      <div>
-        <h2 className="text-xl font-extrabold mb-3">Alamat</h2>
-        <p className="text-lg">{alamat}</p>
-      </div>
-      <div>
-        <h2 className="text-xl font-extrabold mb-3">Deskripsi</h2>
-        <p className="text-lg">{deskripsi}</p>
-      </div>
-    </div>
-  );
-}
-
-function KebutuhanPanti({
+export function KebutuhanPanti({
   listKebutuhan,
   deskripsiKebutuhan,
   anakLaki,

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
+import { BASE_URL } from "../../../constant";
 
 export default function KabarPantiList() {
   const [listArticle, setArticle] = useState();
@@ -13,9 +14,7 @@ export default function KabarPantiList() {
           console.log("user id not found");
           return;
         }
-        const res = await fetch(
-          `http://127.0.0.1:3000/articles/user/${userId}`
-        );
+        const res = await fetch(`${BASE_URL}/articles/user/${userId}`);
         const data = await res.json();
         setArticle(data);
       } catch (error) {
@@ -28,7 +27,7 @@ export default function KabarPantiList() {
   async function deleteArticle(id) {
     console.log(id);
     try {
-      const response = await fetch(`http://127.0.0.1:3000/articles/${id}`, {
+      const response = await fetch(`${BASE_URL}/articles/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {

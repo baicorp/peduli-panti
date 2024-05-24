@@ -3,12 +3,13 @@ import { baseStyle } from "../../assets/styles";
 import bantuan from "../../assets/Images/bantuan.jpeg";
 import calendar from "../../assets/Icons/calendar.svg";
 import { CardKabarPanti } from "../../components";
+import { BASE_URL } from "../../constant";
 
 export default function KabarPanti() {
   const [articles, setArticles] = useState();
   useEffect(() => {
     async function getDataArticle() {
-      const res = await fetch("http://127.0.0.1:3000/articles/");
+      const res = await fetch(`${BASE_URL}/articles/`);
       const data = await res.json();
       setArticles(data);
     }
@@ -27,7 +28,7 @@ export default function KabarPanti() {
             return (
               <CardKabarPanti
                 key={crypto.randomUUID()}
-                img={`http://127.0.0.1:3000/images/article/${data.image}`}
+                img={`${BASE_URL}/images/article/${data.image}`}
                 judul={data.title}
                 deskripsi={data.description}
                 id={`${data.id}`}

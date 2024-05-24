@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import AdminTerdaftar from "./AdminTerdaftar";
-import AdminBelumTerdaftar from "./AdminBelumTerdaftar";
+import AdminBelumTerdaftar, {
+  AdminBelumTerdaftar2,
+} from "./AdminBelumTerdaftar";
 import { useAuth } from "../../../context/AuthContext";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
+import { BASE_URL } from "../../../constant";
 
 export default function Dashboard() {
   const { currentUser } = useAuth();
@@ -15,14 +18,11 @@ export default function Dashboard() {
   const userId = currentUser.uid;
 
   const [dataPanti, setDataPanti] = useState(null);
-  const [refresh, setRefresh] = useState("");
 
   useEffect(() => {
     async function getDataPanti() {
       try {
-        const res = await fetch(
-          `http://127.0.0.1:3000/profiles/user/${userId}`
-        );
+        const res = await fetch(`${BASE_URL}/profiles/user/${userId}`);
         if (!res.ok) {
           setDataPanti(null);
           return;
@@ -58,7 +58,7 @@ export default function Dashboard() {
           image={dataPanti.image}
         />
       ) : (
-        <AdminBelumTerdaftar refresh={setRefresh} />
+        <AdminBelumTerdaftar />
       )}
     </>
   );

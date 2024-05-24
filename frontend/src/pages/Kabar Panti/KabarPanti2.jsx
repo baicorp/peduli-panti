@@ -6,6 +6,7 @@ import share from "../../assets/Icons/icon-share.svg";
 import kabar from "../../assets/Images/kabar.png";
 import penyaluran from "../../assets/Images/penyaluran-alat-sekolah.png";
 import calendar from "../../assets/Icons/calendar.svg";
+import { BASE_URL } from "../../constant";
 
 export default function KabarPanti() {
   const [article, setArticle] = useState();
@@ -13,7 +14,7 @@ export default function KabarPanti() {
   console.log(idArticle);
   useEffect(() => {
     async function getArticleById() {
-      const res = await fetch(`http://127.0.0.1:3000/articles/${idArticle}`);
+      const res = await fetch(`${BASE_URL}/articles/${idArticle}`);
       if (!res.ok) {
         setArticle(null);
         return;
@@ -44,7 +45,7 @@ export default function KabarPanti() {
             </div>
             <div className="px-4">
               <img
-                src={`http://127.0.0.1:3000/images/article/${article.image}`}
+                src={`${BASE_URL}/images/article/${article.image}`}
                 alt=""
                 className="w-full max-h-96 mb-11 object-cover shadow-2xl rounded-xl"
               />
@@ -56,7 +57,7 @@ export default function KabarPanti() {
               {/* <p className="font-inter text-base max-w-[75ch]"></p> */}
             </div>
           </div>
-        )) || <p>Loading. . .</p>}
+        )) || <p>404. . .</p>}
       </section>
       {/* <section>
         <div

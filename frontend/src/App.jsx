@@ -12,6 +12,7 @@ import { PrivateRoute } from "./components";
 import {
   Beranda,
   CariPanti,
+  CariPanti2,
   TentangKami,
   Login,
   KabarPanti,
@@ -30,6 +31,7 @@ import {
   StatusPanti,
   KabarPantiList,
   BuatKabarPanti,
+  BuatKabarPanti2,
 } from "./pages/Admin";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -40,6 +42,7 @@ const router = createBrowserRouter(
       <Route element={<RootLayout />}>
         <Route path="/" element={<Beranda />} index />
         <Route path="cari-panti" element={<CariPanti />} />
+        <Route path="cari-panti2" element={<CariPanti2 />} />
         <Route path="cari-panti/panti/:idPanti" element={<DetailPanti />} />
         <Route path="tentang-kami" element={<TentangKami />} />
         <Route path="kabar-panti" element={<KabarPanti />} />
@@ -64,6 +67,7 @@ const router = createBrowserRouter(
         <Route path="donasi-masuk" element={<DonasiMasuk />} />
         <Route path="kabar-panti-admin" element={<KabarPantiList />} />
         <Route path="kabar-panti-admin/buat" element={<BuatKabarPanti />} />
+        <Route path="kabar-panti-admin/buat2" element={<BuatKabarPanti2 />} />
         <Route path="notifikasi" element={<Notifikasi />} />
       </Route>
     </Route>

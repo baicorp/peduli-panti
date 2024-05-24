@@ -6,6 +6,7 @@ import logoutImg from "../assets/Icons/logout.svg";
 import { useAuth } from "../context/AuthContext";
 
 import PengurusPanti from "../assets/Icons/pengurus-panti.svg";
+import { BASE_URL } from "../constant";
 
 export default function RootLayoutAdmin() {
   const { logout, currentUser } = useAuth();
@@ -16,9 +17,7 @@ export default function RootLayoutAdmin() {
   useEffect(() => {
     async function getDataPanti() {
       try {
-        const res = await fetch(
-          `http://127.0.0.1:3000/profiles/user/${userId}`
-        );
+        const res = await fetch(`${BASE_URL}/profiles/user/${userId}`);
         if (!res.ok) {
           setNamaPanti("");
           return;

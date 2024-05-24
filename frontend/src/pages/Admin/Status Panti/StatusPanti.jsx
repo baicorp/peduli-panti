@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
+import { BASE_URL } from "../../../constant";
 
 export default function StatusPanti() {
   const [dataPanti, setDataPanti] = useState();
@@ -13,7 +14,7 @@ export default function StatusPanti() {
 
   useEffect(() => {
     async function getDataPanti() {
-      const res = await fetch(`http://127.0.0.1:3000/profiles/user/${userId}`);
+      const res = await fetch(`${BASE_URL}/profiles/user/${userId}`);
       const data = await res.json();
       setDataPanti(data[0]);
     }
@@ -27,7 +28,7 @@ export default function StatusPanti() {
       formData.append("image", sertifikatPanti);
 
       const addCertificate = await fetch(
-        `http://127.0.0.1:3000/profiles/certificate/${userId}`,
+        `${BASE_URL}/profiles/certificate/${userId}`,
         {
           method: "POST",
           body: formData,
@@ -78,7 +79,7 @@ export default function StatusPanti() {
               <div>
                 <p>Sertifikat Panti</p>
                 <img
-                  src={`http://127.0.0.1:3000/images/certificate/${dataPanti.sertifikat_panti}`}
+                  src={`${BASE_URL}/images/certificate/${dataPanti.sertifikat_panti}`}
                   alt="sertifikat panti"
                   className="w-48"
                 />
