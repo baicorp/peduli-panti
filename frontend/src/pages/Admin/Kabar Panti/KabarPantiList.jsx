@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { BASE_URL } from "../../../constant";
 
@@ -47,9 +48,12 @@ export default function KabarPantiList() {
     <div>
       <div className="flex justify-between items-center px-9 py-6">
         <h1 className="text-lg font-semibold">Kabar Panti</h1>
-        <button className="px-4 py-2 rounded-lg bg-green-400 text-white">
-          <a href="/kabar-panti-admin/buat">Buat Kabar Panti</a>
-        </button>
+        <Link
+          to="buat"
+          className="px-4 py-2 rounded-lg bg-green-400 text-white"
+        >
+          Buat Kabar Panti
+        </Link>
       </div>
       <hr className="text-border-color" />
       <div className="px-9 py-6 flex flex-col gap-3">
