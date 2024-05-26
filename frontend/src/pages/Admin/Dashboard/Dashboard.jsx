@@ -4,7 +4,6 @@ import AdminBelumTerdaftar, {
   AdminBelumTerdaftar2,
 } from "./AdminBelumTerdaftar";
 import { useAuth } from "../../../context/AuthContext";
-import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { BASE_URL } from "../../../constant";
 
@@ -18,6 +17,11 @@ export default function Dashboard() {
   const userId = currentUser.uid;
 
   const [dataPanti, setDataPanti] = useState(null);
+  const [reload, setReload] = useState(false);
+
+  function handleReload() {
+    setReload((prev) => !prev);
+  }
 
   useEffect(() => {
     async function getDataPanti() {
@@ -34,7 +38,7 @@ export default function Dashboard() {
       }
     }
     getDataPanti();
-  }, [userId]);
+  }, [userId, reload]);
 
   return (
     <>
@@ -58,7 +62,7 @@ export default function Dashboard() {
           image={dataPanti.image}
         />
       ) : (
-        <AdminBelumTerdaftar />
+        <AdminBelumTerdaftar reload={handleReload} />
       )}
     </>
   );

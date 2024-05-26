@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { BASE_URL } from "../../../constant";
 
-export default function AdminBelumTerdaftar() {
+export default function AdminBelumTerdaftar({ reload }) {
   const { currentUser } = useAuth();
   const userId = currentUser ? currentUser.uid : null;
   if (!currentUser.uid) {
@@ -24,7 +25,23 @@ export default function AdminBelumTerdaftar() {
   const [provinsi, setProvinsi] = useState([]);
   const [kabupaten, setKabupaten] = useState([]);
   const [kecamatan, setKecamatan] = useState([]);
-  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const [notif, setNotif] = useState("");
+  const notification = useRef();
+
+  function showNotif(status) {
+    if (status === "success") {
+      setNotif("Berhasil");
+      notification.current.classList.add("bg-green-500");
+    } else if (status === "error") {
+      setNotif("gagal");
+      notification.current.classList.add("bg-rose-500");
+    }
+    setTimeout(() => {
+      notification.current.style.top = "-100%";
+    }, 3000);
+    notification.current.style.top = "3rem";
+  }
 
   const [formData, setFormData] = useState({
     nama_panti: "",
@@ -84,8 +101,6 @@ export default function AdminBelumTerdaftar() {
     }));
   };
 
-  console.log(formData.provinsi);
-
   async function handleSubmit(e) {
     e.preventDefault();
     const form = new FormData();
@@ -93,7 +108,6 @@ export default function AdminBelumTerdaftar() {
       form.append(key, value);
     });
 
-    console.log(formData);
     const tambahDataPanti = await fetch(`${BASE_URL}/profiles`, {
       method: "POST",
       body: form,
@@ -102,8 +116,12 @@ export default function AdminBelumTerdaftar() {
       console.log("tidak berhasil upload data panti");
       return;
     }
+    showNotif("success");
     console.log("berhasil upload data panti");
-    location.reload();
+    setTimeout(() => {
+      // navigate("/profile", { replace: true });
+      reload();
+    }, 1000);
   }
 
   return (
@@ -112,7 +130,7 @@ export default function AdminBelumTerdaftar() {
         Silahkan Isi Profil dan Data Panti
       </h1>
       <hr className="text-border-color" />
-      <div className="px-9 py-6">
+      <div className="px-9 py-6 relative">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div className="flex justify-between gap-3">
             <label
@@ -437,8 +455,13 @@ export default function AdminBelumTerdaftar() {
           >
             Simpan
           </button>
-          {message ? <p>{message}</p> : ""}
         </form>
+        <div
+          ref={notification}
+          className="fixed -top-full left-10 rounded-lg duration-300"
+        >
+          <p className="text-lg px-5 py-3 text-white font-bold">{notif}</p>
+        </div>
       </div>
     </div>
   );

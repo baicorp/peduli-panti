@@ -266,7 +266,6 @@ export const LoginPage2 = () => {
       >
         <p className="text-lg px-5 py-3 text-white font-bold">{notif}</p>
       </div>
-      ;
     </div>
   );
 };

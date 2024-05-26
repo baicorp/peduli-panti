@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { BASE_URL } from "../../../constant";
+import { useNavigate } from "react-router-dom";
 
 export default function BuatKabarPanti() {
   const { currentUser } = useAuth();
@@ -9,6 +10,23 @@ export default function BuatKabarPanti() {
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [articleImage, setArticleImage] = useState(null);
+  const navigate = useNavigate();
+  const [notif, setNotif] = useState("");
+  const notification = useRef();
+
+  function showNotif(status) {
+    if (status === "success") {
+      setNotif("Berhasil");
+      notification.current.classList.add("bg-green-500");
+    } else if (status === "error") {
+      setNotif("gagal");
+      notification.current.classList.add("bg-rose-500");
+    }
+    setTimeout(() => {
+      notification.current.style.top = "-100%";
+    }, 3000);
+    notification.current.style.top = "3rem";
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,8 +55,10 @@ export default function BuatKabarPanti() {
         return;
       }
       console.log("berhasil upload");
-      window.uploadSuccess = true;
-      window.location.reload();
+      showNotif("success");
+      setTimeout(() => {
+        navigate("/kabar-panti-admin");
+      }, 1000);
     } catch (error) {
       console.log("something wrong");
     }
@@ -48,7 +68,7 @@ export default function BuatKabarPanti() {
     <div>
       <h1 className="text-lg font-semibold px-9 py-6">Kabar Panti</h1>
       <hr className="text-border-color" />
-      <div className="px-9 py-6">
+      <div className="px-9 py-6 relative">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-[14px]">
             <label htmlFor="judul" className="font-semibold">
@@ -166,6 +186,12 @@ export default function BuatKabarPanti() {
             Unggah
           </button>
         </form>
+        <div
+          ref={notification}
+          className="fixed -top-full left-10 rounded-lg duration-300"
+        >
+          <p className="text-lg px-5 py-3 text-white font-bold">{notif}</p>
+        </div>
       </div>
     </div>
   );
