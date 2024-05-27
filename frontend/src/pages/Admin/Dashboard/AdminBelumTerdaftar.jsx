@@ -125,8 +125,7 @@ export default function AdminBelumTerdaftar({ reload }) {
       formData.deskripsi_kebutuhan === "" ||
       formData.jumlah_pengurus === "" ||
       formData.jumlah_anaklaki === "" ||
-      formData.jumlah_anakpr === "" ||
-      Object.keys(formData.image).length === 0
+      formData.jumlah_anakpr === ""
     ) {
       showNotif("error");
       return;
