@@ -17,9 +17,11 @@ export default function BuatKabarPanti() {
   function showNotif(status) {
     if (status === "success") {
       setNotif("Berhasil");
+      notification.current.classList.remove("bg-rose-500");
       notification.current.classList.add("bg-green-500");
     } else if (status === "error") {
-      setNotif("gagal");
+      setNotif("Gagal");
+      notification.current.classList.remove("bg-green-500");
       notification.current.classList.add("bg-rose-500");
     }
     setTimeout(() => {
@@ -34,6 +36,7 @@ export default function BuatKabarPanti() {
       const userId = currentUser.uid;
       if (!userId || !title || !author || !description) {
         console.log("all field must be filled");
+        showNotif("error");
         return;
       }
 
@@ -78,7 +81,6 @@ export default function BuatKabarPanti() {
               type="text"
               id="judul"
               className="border rounded-md px-3 py-1 outline-none"
-              required
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
@@ -93,7 +95,6 @@ export default function BuatKabarPanti() {
               type="text"
               id="penulis"
               className="border rounded-md px-3 py-1 outline-none"
-              required
               value={author}
               onChange={(e) => {
                 setAuthor(e.target.value);
@@ -171,7 +172,6 @@ export default function BuatKabarPanti() {
               rows="7"
               className="border rounded-md px-3 py-1 outline-none"
               placeholder="Isi artikel yang akan kamu unggah"
-              required
               value={description}
               onChange={(e) => {
                 setDescription(e.target.value);

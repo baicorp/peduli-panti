@@ -204,8 +204,10 @@ export function DaftarPage2() {
 
   function showNotif(status) {
     if (status === "success") {
+      notification.current.classList.remove("bg-rose-500");
       notification.current.classList.add("bg-green-500");
     } else if (status === "error") {
+      notification.current.classList.remove("bg-green-500");
       notification.current.classList.add("bg-rose-500");
     }
     setTimeout(() => {

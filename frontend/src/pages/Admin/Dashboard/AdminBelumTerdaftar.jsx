@@ -32,9 +32,11 @@ export default function AdminBelumTerdaftar({ reload }) {
   function showNotif(status) {
     if (status === "success") {
       setNotif("Berhasil");
+      notification.current.classList.remove("bg-rose-500");
       notification.current.classList.add("bg-green-500");
     } else if (status === "error") {
-      setNotif("gagal");
+      setNotif("Gagal");
+      notification.current.classList.remove("bg-green-500");
       notification.current.classList.add("bg-rose-500");
     }
     setTimeout(() => {
@@ -116,12 +118,32 @@ export default function AdminBelumTerdaftar({ reload }) {
       console.log("tidak berhasil upload data panti");
       return;
     }
-    showNotif("success");
-    console.log("berhasil upload data panti");
-    setTimeout(() => {
-      // navigate("/profile", { replace: true });
-      reload();
-    }, 1000);
+    if (
+      formData.nama_panti === "" ||
+      formData.notelp_panti === "" ||
+      formData.nama_pemilik === "" ||
+      formData.notelp_pemilik === "" ||
+      formData.deskripsi_panti === "" ||
+      formData.alamat_panti === "" ||
+      formData.provinsi === "" ||
+      formData.kabupaten === "" ||
+      formData.kecamatan === "" ||
+      formData.program_panti === "" ||
+      formData.kebutuhan_panti === "" ||
+      formData.deskripsi_kebutuhan === "" ||
+      formData.jumlah_pengurus === "" ||
+      formData.jumlah_anaklaki === "" ||
+      formData.jumlah_anakpr === "" ||
+      Object.keys(formData.image).length === 0
+    ) {
+      showNotif("error");
+    } else {
+      showNotif("success");
+      console.log("berhasil upload data panti");
+      setTimeout(() => {
+        reload();
+      }, 1000);
+    }
   }
 
   return (
@@ -140,7 +162,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Nama Panti
             </label>
             <input
-              required
               type="text"
               id="nama_panti"
               value={formData.nama_panti}
@@ -156,7 +177,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               No Tlp Panti
             </label>
             <input
-              required
               type="number"
               id="notelp_panti"
               value={formData.notelp_panti}
@@ -172,7 +192,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Nama Pemilik
             </label>
             <input
-              required
               type="text"
               id="nama_pemilik"
               value={formData.nama_pemilik}
@@ -188,7 +207,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               No Tlp Pemilik
             </label>
             <input
-              required
               type="number"
               id="notelp_pemilik"
               value={formData.notelp_pemilik}
@@ -222,7 +240,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Alamat
             </label>
             <input
-              required
               type="text"
               id="alamat_panti"
               value={formData.alamat_panti}
@@ -238,7 +255,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Provinsi
             </label>
             <select
-              required
               id="provinsi"
               name="provinsi"
               onChange={handleInputChange}
@@ -260,7 +276,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Kabupaten / Kota
             </label>
             <select
-              required
               id="kabupaten"
               name="kabupaten"
               onChange={handleInputChange}
@@ -282,7 +297,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Kecamatan
             </label>
             <select
-              required
               id="kecamatan"
               name="kecamatan"
               onChange={handleInputChange}
@@ -354,7 +368,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Jumlah Pengurus
             </label>
             <input
-              required
               type="number"
               id="jumlah_pengurus"
               value={formData.jumlah_pengurus}
@@ -370,7 +383,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Jumlah Anak Laki-laki
             </label>
             <input
-              required
               type="number"
               id="jumlah_anaklaki"
               value={formData.jumlah_anaklaki}
@@ -386,7 +398,6 @@ export default function AdminBelumTerdaftar({ reload }) {
               Jumlah Anak Perempuan
             </label>
             <input
-              required
               type="number"
               id="jumlah_anakpr"
               value={formData.jumlah_anakpr}
