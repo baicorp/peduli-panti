@@ -35,7 +35,6 @@ export default function BuatKabarPanti() {
     try {
       const userId = currentUser.uid;
       if (!userId || !title || !author || !description) {
-        console.log("all field must be filled");
         showNotif("error");
         return;
       }

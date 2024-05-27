@@ -110,14 +110,6 @@ export default function AdminBelumTerdaftar({ reload }) {
       form.append(key, value);
     });
 
-    const tambahDataPanti = await fetch(`${BASE_URL}/profiles`, {
-      method: "POST",
-      body: form,
-    });
-    if (!tambahDataPanti.ok) {
-      console.log("tidak berhasil upload data panti");
-      return;
-    }
     if (
       formData.nama_panti === "" ||
       formData.notelp_panti === "" ||
@@ -137,7 +129,16 @@ export default function AdminBelumTerdaftar({ reload }) {
       Object.keys(formData.image).length === 0
     ) {
       showNotif("error");
+      return;
     } else {
+      const tambahDataPanti = await fetch(`${BASE_URL}/profiles`, {
+        method: "POST",
+        body: form,
+      });
+      if (!tambahDataPanti.ok) {
+        console.log("tidak berhasil upload data panti");
+        return;
+      }
       showNotif("success");
       console.log("berhasil upload data panti");
       setTimeout(() => {
