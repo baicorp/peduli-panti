@@ -97,7 +97,7 @@ export default function AdminBelumTerdaftar({ reload }) {
   const handleInputChangeImage = (e) => {
     setFormData((prevData) => ({
       ...prevData,
-      [e.target.id]: e.target.files[0],
+      image: "image123.jpg",
     }));
   };
 
@@ -438,7 +438,6 @@ export default function AdminBelumTerdaftar({ reload }) {
                   Format : jpg | png
                 </p>
                 <input
-                  required
                   type="file"
                   accept="image/png, image/jpeg, image/jpg"
                   id="image"

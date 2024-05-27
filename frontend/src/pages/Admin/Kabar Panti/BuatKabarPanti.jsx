@@ -32,7 +32,7 @@ export default function BuatKabarPanti() {
     e.preventDefault();
     try {
       const userId = currentUser.uid;
-      if (!userId || !title || !author || !description || !articleImage) {
+      if (!userId || !title || !author || !description) {
         console.log("all field must be filled");
         return;
       }
@@ -153,9 +153,8 @@ export default function BuatKabarPanti() {
                   accept="image/png, image/jpeg, image/jpg"
                   id="foto"
                   className="mt-2"
-                  required
                   onChange={(e) => {
-                    setArticleImage(e.target.files[0]);
+                    setArticleImage("image123.jpg");
                   }}
                 />
               </div>
